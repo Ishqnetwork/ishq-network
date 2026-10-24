@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishq Network | Rasool Vocal HQ Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Manjari:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #090a0f;
+            --card-bg: rgba(22, 27, 38, 0.7);
+            --border-glow: rgba(147, 51, 234, 0.3);
+            --accent-purple: #9333ea;
+            --accent-cyan: #06b6d4;
+            --accent-gold: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', 'Manjari', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(147, 51, 234, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 40%);
+        }
+
+        header {
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff 0%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .brand-tag {
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .main-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .hero-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(16px);
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            color: var(--accent-cyan);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .bio-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(12px);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .track-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .track-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .track-item:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--accent-cyan);
+        }
+
+        .track-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .track-info p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .play-btn {
+            background: var(--accent-purple);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            background: var(--accent-cyan);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <div class="brand-logo">ISHQ NETWORK</div>
+            <div class="brand-tag">Rasool Vocal HQ</div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="hero-card">
+            <h1 class="hero-title">Rasool Vocal HQ</h1>
+            <div class="hero-subtitle">Pure-Voice A Cappella & Hybrid Vocal Singing Method</div>
+            <p class="bio-text">
+                ഇഷ്ഖ് നെറ്റ്‌വർക്കിന്റെ (Ishq Network) കീഴിലുള്ള ഔദ്യോഗിക സംഗീത പോർട്ടൽ. വാദ്യോപകരണങ്ങളുടെ അകമ്പടിയില്ലാതെ ശുദ്ധമായ വോക്കൽ ഹാർമണികളും, പ്യുവർ അക്കാപെല്ല (Pure-voice A cappella) രീതിയിലുള്ള മാപ്പിളപ്പാട്ടുകളും മനോഹരമായ ആൽബം ഗാനങ്ങളും നിർമ്മിക്കുന്ന പോർട്ടൽ.
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h3 class="section-title">🎵 പുതിയ റിലീസുകൾ (Latest Releases)</h3>
+            <div class="track-list">
+                <div class="track-item">
+                    <div class="track-info">
+                        <h4>പിരിഷം (Pirisham)</h4>
+                        <p>Ishq Network Original • Pure Vocal Harmony</p>
+                    </div>
+                    <button class="play-btn">Play Track</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Ishq Network & Rasool Vocal HQ. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
