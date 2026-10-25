@@ -1,250 +1,799 @@
+```html
 <!DOCTYPE html>
 <html lang="ml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ishq Network | Rasool Vocal HQ Official</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Manjari:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Syne & Noto Sans Malayalam -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@300;400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Noto Sans Malayalam', 'sans-serif'],
+                        heading: ['Syne', 'sans-serif'],
+                    },
+                    colors: {
+                        darkBg: '#07090e',
+                        cardBg: 'rgba(15, 20, 32, 0.7)',
+                        goldAccent: '#fbbf24',
+                        purpleAccent: '#8b5cf6',
+                        cyanAccent: '#06b6d4'
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --bg-main: #090a0f;
-            --card-bg: rgba(22, 27, 38, 0.7);
-            --border-glow: rgba(147, 51, 234, 0.3);
-            --accent-purple: #9333ea;
-            --accent-cyan: #06b6d4;
-            --accent-gold: #f59e0b;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', 'Manjari', sans-serif;
-        }
-
         body {
-            background-color: var(--bg-main);
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background-color: #07090e;
+            color: #e2e8f0;
+            font-family: 'Noto Sans Malayalam', sans-serif;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(147, 51, 234, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 40%);
         }
 
-        header {
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .brand-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff 0%, var(--accent-gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-        }
-
-        .brand-tag {
-            font-size: 0.8rem;
-            color: var(--accent-cyan);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .main-container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-
-        .hero-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-glow);
-            border-radius: 24px;
-            padding: 40px;
+        /* Ultra Glassmorphism */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.65);
             backdrop-filter: blur(16px);
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            color: var(--accent-cyan);
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-
-        .bio-text {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto 30px auto;
-        }
-
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            padding: 12px 24px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn:hover, .tab-btn.active {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
-            border-color: transparent;
-            box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
-        }
-
-        .section-card {
-            background: var(--card-bg);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 25px;
-            backdrop-filter: blur(12px);
         }
 
-        .section-title {
-            font-size: 1.4rem;
-            color: var(--accent-gold);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .glass-panel-gold {
+            background: rgba(20, 16, 30, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(251, 191, 36, 0.2);
         }
 
-        .track-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+        .glass-panel:hover {
+            border-color: rgba(139, 92, 246, 0.35);
+            box-shadow: 0 10px 35px -5px rgba(139, 92, 246, 0.2);
         }
 
-        .track-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            transition: 0.3s;
+        /* Custom Visualizer Bars */
+        .v-bar {
+            width: 4px;
+            background: linear-gradient(180deg, #8b5cf6, #06b6d4);
+            border-radius: 9999px;
+            animation: bounceBar 1s infinite alternate ease-in-out;
         }
 
-        .track-item:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: var(--accent-cyan);
+        @keyframes bounceBar {
+            0% { height: 6px; }
+            100% { height: 38px; }
         }
 
-        .track-info h4 {
-            font-size: 1.1rem;
-            margin-bottom: 4px;
+        .paused-bars .v-bar {
+            animation-play-state: paused !important;
+            height: 6px !important;
         }
 
-        .track-info p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
+        /* Glow effects */
+        .ambient-glow-purple {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(139,92,246,0.18) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
-        .play-btn {
-            background: var(--accent-purple);
-            color: white;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.2s;
+        .ambient-glow-cyan {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
-        .play-btn:hover {
-            transform: scale(1.05);
-            background: var(--accent-cyan);
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07090e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6;
         }
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            margin-top: auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-secondary);
-            font-size: 0.85rem;
+        /* Smooth Tab Transitions */
+        .tab-view {
+            transition: opacity 0.3s ease-in-out;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between selection:bg-purple-600 selection:text-white">
 
-    <header>
-        <div>
-            <div class="brand-logo">ISHQ NETWORK</div>
-            <div class="brand-tag">Rasool Vocal HQ</div>
+    <!-- Ambient Background Lighting -->
+    <div class="ambient-glow-purple top-10 left-10"></div>
+    <div class="ambient-glow-cyan top-96 right-10"></div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80 bg-slate-950/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="showTab('home')">
+                <div class="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 via-purple-600 to-cyan-500 p-[2px] shadow-lg shadow-purple-950/50">
+                    <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+                        <i class="fa-solid fa-waveform text-amber-400 text-xl"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="font-heading font-extrabold text-xl tracking-wider text-white flex items-center gap-2">
+                        ISHQ NETWORK
+                        <i class="fa-solid fa-circle-check text-cyan-400 text-xs" title="Verified Media Network"></i>
+                    </span>
+                    <span class="text-xs text-purple-400 font-medium tracking-wide block">Rasool Vocal HQ Official</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden lg:flex items-center space-x-1 bg-slate-900/80 p-1.5 rounded-2xl border border-slate-800">
+                <button onclick="showTab('home')" id="nav-btn-home" class="nav-tab active-tab px-4 py-2 rounded-xl text-xs font-semibold tracking-wider text-purple-300 bg-purple-950/60 border border-purple-500/30 transition">
+                    <i class="fa-solid fa-house mr-1.5"></i>ഹോം (HOME)
+                </button>
+                <button onclick="showTab('releases')" id="nav-btn-releases" class="nav-tab px-4 py-2 rounded-xl text-xs font-semibold tracking-wider text-slate-400 hover:text-white transition">
+                    <i class="fa-solid fa-compact-disc mr-1.5"></i>പാട്ടുകൾ (MUSIC)
+                </button>
+                <button onclick="showTab('method')" id="nav-btn-method" class="nav-tab px-4 py-2 rounded-xl text-xs font-semibold tracking-wider text-slate-400 hover:text-white transition">
+                    <i class="fa-solid fa-microphone-lines mr-1.5"></i>VOICE METHOD
+                </button>
+                <button onclick="showTab('community')" id="nav-btn-community" class="nav-tab px-4 py-2 rounded-xl text-xs font-semibold tracking-wider text-slate-400 hover:text-white transition">
+                    <i class="fa-solid fa-bullhorn mr-1.5"></i>കമ്മ്യൂണിറ്റി
+                </button>
+                <button onclick="showTab('about')" id="nav-btn-about" class="nav-tab px-4 py-2 rounded-xl text-xs font-semibold tracking-wider text-slate-400 hover:text-white transition">
+                    <i class="fa-solid fa-shield-halved mr-1.5"></i>ABOUT
+                </button>
+            </nav>
+
+            <!-- YouTube CTA Button -->
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center space-x-2 bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 text-white px-5 py-2.5 rounded-xl font-bold text-xs tracking-wider uppercase shadow-xl shadow-red-950/40 border border-red-500/30 transition transform hover:-translate-y-0.5">
+                <i class="fa-brands fa-youtube text-base"></i>
+                <span>Listen On YouTube</span>
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden text-slate-300 p-2 rounded-xl bg-slate-900 border border-slate-800">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-b border-slate-800 px-4 py-4 space-y-2">
+            <button onclick="showTab('home'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-200 bg-slate-900/60">
+                <i class="fa-solid fa-house mr-3 text-purple-400"></i>ഹോം (Home)
+            </button>
+            <button onclick="showTab('releases'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-200 bg-slate-900/60">
+                <i class="fa-solid fa-compact-disc mr-3 text-cyan-400"></i>പാട്ടുകൾ (Releases)
+            </button>
+            <button onclick="showTab('method'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-200 bg-slate-900/60">
+                <i class="fa-solid fa-microphone-lines mr-3 text-amber-400"></i>Voice Method
+            </button>
+            <button onclick="showTab('community'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-200 bg-slate-900/60">
+                <i class="fa-solid fa-bullhorn mr-3 text-emerald-400"></i>കമ്മ്യൂണിറ്റി (Feed)
+            </button>
+            <button onclick="showTab('about'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-200 bg-slate-900/60">
+                <i class="fa-solid fa-shield-halved mr-3 text-indigo-400"></i>ആർട്ടിസ്റ്റ് & ലീഗൽ
+            </button>
         </div>
     </header>
 
-    <div class="main-container">
-        <div class="hero-card">
-            <h1 class="hero-title">Rasool Vocal HQ</h1>
-            <div class="hero-subtitle">Pure-Voice A Cappella & Hybrid Vocal Singing Method</div>
-            <p class="bio-text">
-                ഇഷ്ഖ് നെറ്റ്‌വർക്കിന്റെ (Ishq Network) കീഴിലുള്ള ഔദ്യോഗിക സംഗീത പോർട്ടൽ. വാദ്യോപകരണങ്ങളുടെ അകമ്പടിയില്ലാതെ ശുദ്ധമായ വോക്കൽ ഹാർമണികളും, പ്യുവർ അക്കാപെല്ല (Pure-voice A cappella) രീതിയിലുള്ള മാപ്പിളപ്പാട്ടുകളും മനോഹരമായ ആൽബം ഗാനങ്ങളും നിർമ്മിക്കുന്ന പോർട്ടൽ.
-            </p>
-        </div>
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
 
-        <div class="section-card">
-            <h3 class="section-title">🎵 പുതിയ റിലീസുകൾ (Latest Releases)</h3>
-            <div class="track-list">
-                <div class="track-item">
-                    <div class="track-info">
-                        <h4>പിരിഷം (Pirisham)</h4>
-                        <p>Ishq Network Original • Pure Vocal Harmony</p>
+        <!-- ================= SECTION 1: HERO & FEATURED RELEASE ================= -->
+        <section id="view-home" class="tab-view space-y-12">
+            
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-3xl glass-panel p-8 md:p-12 border border-slate-800/80 bg-gradient-to-br from-purple-950/30 via-slate-950 to-cyan-950/20 shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                    
+                    <!-- Left Column: Title & Info -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold tracking-wider uppercase">
+                            <i class="fa-solid fa-crown text-amber-400"></i>
+                            <span>Official Media & Audio Portal</span>
+                        </div>
+
+                        <h1 class="font-heading font-extrabold text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight">
+                            RASOOL VOCAL HQ
+                            <span class="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-purple-400 to-cyan-400 text-2xl sm:text-4xl lg:text-5xl font-bold mt-2">
+                                Ishq Network &bull; Noorul Ameen
+                            </span>
+                        </h1>
+
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+                            വിശുദ്ധ സംഗീതത്തിന് വോക്കൽ കൊണ്ട് ചിറകുകൾ നൽകുന്ന നവീന ലോകം. പൂർണ്ണമായും മാനുഷിക ശബ്ദങ്ങൾ മാത്രം കോർത്തിണക്കി തയ്യാറാക്കുന്ന <strong class="text-purple-300">Pure-Voice A Cappella</strong>, <strong class="text-cyan-300">Hybrid Vocal Singing Method</strong> എന്നിവയുടെ ഔദ്യോഗിക ഗ്ലോബൽ മീഡിയ ഹബ്ബ്.
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                            <button onclick="showTab('releases')" class="bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white px-7 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider shadow-lg shadow-purple-950/60 transition transform hover:-translate-y-0.5">
+                                <i class="fa-solid fa-play mr-2"></i> റിലീസുകൾ കാണാം
+                            </button>
+                            <button onclick="showTab('method')" class="glass-panel text-slate-200 hover:text-white px-7 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider border border-slate-700 transition">
+                                <i class="fa-solid fa-sliders mr-2 text-cyan-400"></i> Voice Method
+                            </button>
+                        </div>
                     </div>
-                    <button class="play-btn">Play Track</button>
+
+                    <!-- Right Column: Interactive Artist Card & Visualizer -->
+                    <div class="lg:col-span-5 flex flex-col items-center">
+                        <div class="w-full max-w-sm glass-panel-gold rounded-3xl p-6 border border-amber-500/30 text-center space-y-5 shadow-2xl relative">
+                            <!-- Badge -->
+                            <span class="absolute top-4 right-4 bg-purple-950 text-purple-300 text-[10px] font-bold px-2.5 py-1 rounded-full border border-purple-500/40 uppercase">
+                                Verified Creator
+                            </span>
+
+                            <!-- Profile Avatar -->
+                            <div class="relative mx-auto w-28 h-28">
+                                <div class="w-full h-full rounded-full bg-gradient-to-tr from-amber-400 via-purple-600 to-cyan-500 p-1">
+                                    <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center overflow-hidden">
+                                        <i class="fa-solid fa-user-astronaut text-4xl text-amber-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="font-heading font-extrabold text-xl text-white">Noorul Ameen</h3>
+                                <p class="text-xs text-purple-400 font-semibold mt-1">Founder & Lead Artist, Ishq Network</p>
+                                <p class="text-xs text-slate-400 mt-0.5"><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>Thiruvananthapuram, Kerala</p>
+                            </div>
+
+                            <!-- Live Audio Visualizer Canvas Simulation -->
+                            <div class="bg-slate-950/80 rounded-2xl p-4 border border-slate-800 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div id="hero-bars" class="flex items-end space-x-1 h-8 paused-bars">
+                                        <div class="v-bar" style="animation-delay: 0.1s"></div>
+                                        <div class="v-bar" style="animation-delay: 0.4s"></div>
+                                        <div class="v-bar" style="animation-delay: 0.2s"></div>
+                                        <div class="v-bar" style="animation-delay: 0.5s"></div>
+                                        <div class="v-bar" style="animation-delay: 0.3s"></div>
+                                    </div>
+                                    <div class="text-left">
+                                        <span class="block text-[10px] text-purple-400 uppercase font-extrabold">Audio Mode</span>
+                                        <span id="hero-track-name" class="text-xs font-bold text-slate-200">A Cappella Mode</span>
+                                    </div>
+                                </div>
+                                <button onclick="toggleHeroVisualizer()" class="w-9 h-9 rounded-xl bg-purple-600 hover:bg-purple-500 text-white flex items-center justify-center text-xs shadow-md transition">
+                                    <i id="hero-play-icon" class="fa-solid fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+            </div>
+
+            <!-- Spotlight Release Banner -->
+            <div class="glass-panel rounded-3xl p-6 md:p-8 border border-purple-500/20 bg-gradient-to-r from-purple-950/40 via-slate-900 to-slate-950 flex flex-col lg:flex-row items-center justify-between gap-6">
+                <div class="flex items-center space-x-5 w-full lg:w-auto">
+                    <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-tr from-amber-500 to-purple-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-purple-950/60 border border-amber-400/30">
+                        <i class="fa-solid fa-compact-disc text-3xl sm:text-4xl animate-spin" style="animation-duration: 12s;"></i>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-red-950 text-red-400 text-[10px] font-bold px-2 py-0.5 rounded border border-red-500/30 uppercase">Official Track</span>
+                            <span class="text-xs text-amber-400 font-semibold">Millennium Primes Release</span>
+                        </div>
+                        <h3 class="font-heading font-extrabold text-xl sm:text-2xl text-white">പിരിശം (Pirisham)</h3>
+                        <p class="text-xs sm:text-sm text-slate-400">Pure Hybrid Vocal Composition &bull; Rasool Vocal HQ & Ishq Network</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto justify-end border-t lg:border-t-0 pt-4 lg:pt-0 border-slate-800">
+                    <button onclick="playTrack('പിരിശം (Pirisham)', 'Rasool Vocal HQ (Millennium Primes)', 'Pure Vocal Hybrid Master', 'pirisham')" class="bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg transition">
+                        <i class="fa-solid fa-play"></i>
+                        <span>Play Audio Preview</span>
+                    </button>
+                    <button onclick="openLyrics('pirisham')" class="glass-panel text-slate-300 hover:text-white px-4 py-3 rounded-xl font-bold text-xs border border-slate-700 transition">
+                        <i class="fa-solid fa-file-lines mr-1.5 text-amber-400"></i>വരികൾ (Lyrics)
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= SECTION 2: MUSIC RELEASES SHOWCASE ================= -->
+        <section id="view-releases" class="tab-view hidden space-y-8">
+            <div class="border-b border-slate-800 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                <div>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-white">പാട്ടുകൾ & ഔദ്യോഗിക റിലീസുകൾ</h2>
+                    <p class="text-xs sm:text-sm text-slate-400">Rasool Vocal HQ ബ്രാൻഡിന് കീഴിലുള്ള വോക്കൽ ട്രാക്കുകൾ</p>
+                </div>
+                <span class="text-xs bg-slate-900 border border-slate-800 text-purple-400 px-3 py-1.5 rounded-xl font-mono">
+                    <i class="fa-solid fa-music mr-1"></i> Total Tracks: 4
+                </span>
+            </div>
+
+            <!-- Music Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- Track 1 -->
+                <div class="glass-card glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4 hover:border-purple-500/40 transition">
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-14 h-14 rounded-xl bg-purple-950/60 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
+                                <i class="fa-solid fa-microphone-lines text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Millennium Primes Release</span>
+                                <h3 class="font-bold text-base text-white">പിരിശം (Pirisham)</h3>
+                                <p class="text-xs text-slate-400">Pure Vocal Hybrid Singing Method</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between border-t border-slate-800/80 pt-3">
+                        <button onclick="playTrack('പിരിശം (Pirisham)', 'Rasool Vocal HQ', 'Official Single', 'pirisham')" class="text-xs font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-play text-base"></i> പ്ലേ ചെയ്യുക
+                        </button>
+                        <button onclick="openLyrics('pirisham')" class="text-xs text-slate-400 hover:text-slate-200">
+                            <i class="fa-solid fa-align-left mr-1"></i> വരികൾ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 2 -->
+                <div class="glass-card glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4 hover:border-cyan-500/40 transition">
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-14 h-14 rounded-xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
+                                <i class="fa-solid fa-kaaba text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-cyan-400 font-bold uppercase tracking-wider">A Cappella Special</span>
+                                <h3 class="font-bold text-base text-white">പാത്തി മക്കത്തുന്നുള്ള (Paathimakkathannulla)</h3>
+                                <p class="text-xs text-slate-400">Spiritual Pure Voice Vocal Harmony</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between border-t border-slate-800/80 pt-3">
+                        <button onclick="playTrack('പാത്തി മക്കത്തുന്നുള്ള', 'Rasool Vocal HQ', 'A Cappella Sacred', 'paathi')" class="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-play text-base"></i> പ്ലേ ചെയ്യുക
+                        </button>
+                        <button onclick="openLyrics('paathi')" class="text-xs text-slate-400 hover:text-slate-200">
+                            <i class="fa-solid fa-align-left mr-1"></i> വരികൾ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 3 -->
+                <div class="glass-card glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4 hover:border-amber-500/40 transition">
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-14 h-14 rounded-xl bg-amber-950/60 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
+                                <i class="fa-solid fa-layer-group text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Medley Series</span>
+                                <h3 class="font-bold text-base text-white">മാപ്പിളപ്പാട്ട് വോക്കൽ മെഡ്‌ലി</h3>
+                                <p class="text-xs text-slate-400">Classic Mappilappattu Hybrid Vocal Cover</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between border-t border-slate-800/80 pt-3">
+                        <button onclick="playTrack('മാപ്പിളപ്പാട്ട് വോക്കൽ മെഡ്‌ലി', 'Rasool Vocal HQ', 'Medley Special', 'medley')" class="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-play text-base"></i> പ്ലേ ചെയ്യുക
+                        </button>
+                        <button onclick="openLyrics('medley')" class="text-xs text-slate-400 hover:text-slate-200">
+                            <i class="fa-solid fa-align-left mr-1"></i> വരികൾ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Track 4 -->
+                <div class="glass-card glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4 hover:border-emerald-500/40 transition">
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-14 h-14 rounded-xl bg-emerald-950/60 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                                <i class="fa-solid fa-wind text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider">Ishq Network Original</span>
+                                <h3 class="font-bold text-base text-white">ഇശ്ഖ് തരംഗം (Ishq Vocal Waves)</h3>
+                                <p class="text-xs text-slate-400">Ambient Studio Vocal Harmony</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between border-t border-slate-800/80 pt-3">
+                        <button onclick="playTrack('ഇശ്ഖ് തരംഗം', 'Rasool Vocal HQ', 'Studio Pure Wave', 'ishq')" class="text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-play text-base"></i> പ്ലേ ചെയ്യുക
+                        </button>
+                        <button onclick="openLyrics('ishq')" class="text-xs text-slate-400 hover:text-slate-200">
+                            <i class="fa-solid fa-align-left mr-1"></i> വരികൾ
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= SECTION 3: HYBRID VOCAL METHOD & INNOVATION ================= -->
+        <section id="view-method" class="tab-view hidden space-y-8">
+            <div class="border-b border-slate-800 pb-4">
+                <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-white">Hybrid Vocal Singing Method</h2>
+                <p class="text-xs sm:text-sm text-slate-400">Rasool Vocal HQ (Noorul Ameen) വികസിപ്പിച്ചെടുത്ത സംഗീത സാങ്കേതികവിദ്യ</p>
+            </div>
+
+            <!-- Explanation Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Feature 1 -->
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-purple-950/80 border border-purple-500/30 flex items-center justify-center text-purple-400 text-xl font-bold">
+                        01
+                    </div>
+                    <h3 class="font-bold text-lg text-white">Pure Voice Layering</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        മ്യൂസിക് ഇൻസ്ട്രുമെന്റുകൾ (Instruments) ഒന്നുമില്ലാതെ, മനുഷ്യന്റെ ശബ്ദതരംഗങ്ങൾ (Bass, Harmony, Rhythm) മാത്രം മൾട്ടി-ട്രാക്ക് ആയി റെക്കോർഡ് ചെയ്ത് ലെയർ ചെയ്യുന്ന അത്യാധുനിക എ-കാപ്പെല്ല രീതി.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-950/80 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl font-bold">
+                        02
+                    </div>
+                    <h3 class="font-bold text-lg text-white">Ambient Soundscapes</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        മനോഹരമായ പ്രകൃതിയുടെ ശബ്ദങ്ങൾ (മഴയുടെ തുള്ളികൾ, പക്ഷികളുടെ ആലാപനം) ശുദ്ധമായ വോക്കൽ ട്രാക്കുകളിലേക്ക് സ്വാഭാവികമായി സംയോജിപ്പിച്ച് കേൾവിക്കാരന് ആത്മീയ ശാന്തത നൽകുന്നു.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-950/80 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl font-bold">
+                        03
+                    </div>
+                    <h3 class="font-bold text-lg text-white">Spiritual Vocal Harmonies</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        പരമ്പരാഗത മാപ്പിളപ്പാട്ടുകളുടെയും ഭക്തിഗാനങ്ങളുടെയും ആത്മാവ് ചോർന്നുപോകാതെ, ലോകോത്തര സ്റ്റുഡിയോ മിക്സിംഗ് സാങ്കേതികവിദ്യ ഉപയോഗിച്ച് നിർമ്മിക്കുന്ന പ്യുവർ വോക്കൽ ക്രിയേഷൻ.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= SECTION 4: COMMUNITY & LIVE FEED ================= -->
+        <section id="view-community" class="tab-view hidden space-y-8">
+            <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
+                <div>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-white">കമ്മ്യൂണിറ്റി & സ്റ്റുഡിയോ വിശേഷങ്ങൾ</h2>
+                    <p class="text-xs sm:text-sm text-slate-400">Rasool Vocal HQ തത്സമയ അറിയിപ്പുകളും ആരാധകരുടെ അഭിപ്രായങ്ങളും</p>
+                </div>
+                <span class="bg-red-950/60 text-red-400 text-xs px-3 py-1 rounded-full border border-red-500/30 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> Live Stream
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                <!-- Left: Studio Posts Feed -->
+                <div class="lg:col-span-7 space-y-6">
+
+                    <!-- Community Post 1 -->
+                    <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-400 to-purple-600 flex items-center justify-center font-bold text-white text-xs">
+                                    RV
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-white flex items-center gap-1.5">
+                                        Rasool Vocal HQ <i class="fa-solid fa-circle-check text-cyan-400 text-xs"></i>
+                                    </h4>
+                                    <p class="text-[10px] text-slate-400">Official YouTube Community Update</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                            എല്ലാവർക്കും നമസ്കാരം! ഞങ്ങളുടെ പുതിയ വോക്കൽ പ്രോജക്റ്റ് <strong>'പിരിശം' (Pirisham)</strong> Millennium Primes വഴി പുറത്തിറങ്ങിയിട്ടുണ്ട്. നിങ്ങളുടെ അഭിപ്രായങ്ങൾ താഴെ രേഖപ്പെടുത്തുമല്ലോ! ❤️🎵
+                        </p>
+
+                        <!-- Interactive Fan Poll -->
+                        <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-2">
+                            <span class="text-xs font-bold text-amber-400">Poll: അടുത്ത വോക്കൽ റിലീസ് ഏത് രീതിയിൽ വേണം?</span>
+                            <div class="space-y-2 pt-1">
+                                <button onclick="votePoll(1)" id="poll-btn-1" class="w-full text-left p-2.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-slate-300 hover:bg-purple-950/50 flex justify-between">
+                                    <span>1. പ്യുവർ മാപ്പിളപ്പാട്ട് A Cappella</span>
+                                    <span id="poll-val-1" class="font-bold text-purple-400">68%</span>
+                                </button>
+                                <button onclick="votePoll(2)" id="poll-btn-2" class="w-full text-left p-2.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-slate-300 hover:bg-purple-950/50 flex justify-between">
+                                    <span>2. ഹൈബ്രിഡ് വോക്കൽ മെഡ്‌ലി</span>
+                                    <span id="poll-val-2" class="font-bold text-cyan-400">32%</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right: Fan Comment Box (Interactive) -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+                        <h3 class="font-bold text-base text-white flex items-center gap-2">
+                            <i class="fa-solid fa-comments text-purple-400"></i> ആരാധകരുടെ സന്ദേശങ്ങൾ
+                        </h3>
+
+                        <!-- Input Box -->
+                        <div class="space-y-3">
+                            <input type="text" id="fan-name" placeholder="നിങ്ങളുടെ പേര്" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-purple-500">
+                            <textarea id="fan-msg" rows="3" placeholder="പാട്ടിനെക്കുറിച്ചുള്ള നിങ്ങളുടെ അഭിപ്രായം..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-purple-500"></textarea>
+                            <button onclick="postFanComment()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs py-2.5 rounded-xl transition">
+                                സന്ദേശം അയക്കൂ (Post Comment)
+                            </button>
+                        </div>
+
+                        <!-- Live Fan Comments Feed -->
+                        <div id="fan-comments-list" class="space-y-3 max-h-60 overflow-y-auto pt-2 border-t border-slate-800">
+                            <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800/80">
+                                <span class="font-bold text-xs text-amber-400">റഹീം (Kozhikode)</span>
+                                <p class="text-[11px] text-slate-300 mt-1">'പിരിശം' കേട്ടു, വോക്കൽ ഹാർമണി വളരെ മനോഹരമായിട്ടുണ്ട്! ആശംസകൾ Ishq Network.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= SECTION 5: ABOUT ARTIST & LEGAL BRAND ================= -->
+        <section id="view-about" class="tab-view hidden space-y-8">
+            <div class="border-b border-slate-800 pb-4">
+                <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-white">ആർട്ടിസ്റ്റ് ബയോ & ലീഗൽ ഇൻഫർമേഷൻ</h2>
+                <p class="text-xs sm:text-sm text-slate-400">Ishq Network ഔദ്യോഗിക പകർപ്പവകാശ വിവരങ്ങൾ</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <div class="lg:col-span-8 glass-panel p-8 rounded-3xl border border-slate-800 space-y-6">
+                    <h3 class="font-heading font-extrabold text-xl text-amber-400">Ishq Network / Rasool Vocal HQ</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        കേരളത്തിലെ തിരുവനന്തപുരം കേന്ദ്രീകരിച്ച് പ്രവർത്തിക്കുന്ന സംഗീത സംവിധായകനും വോക്കൽ ആർട്ടിസ്റ്റുമായ **നൂറുൽ അമീൻ (Noorul Ameen)** യുടെ ഔദ്യോഗിക മ്യൂസിക് ബ്രാൻഡാണ് **Rasool Vocal HQ (Ishq Network)**.
+                    </p>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        കലാകാരന്റെ ഒറിജിനൽ ശബ്ദ ശേഖരങ്ങൾ, വോക്കൽ മിക്സിംഗ്, മാപ്പിളപ്പാട്ട് വേർഷനുകൾ എന്നിവ കൃത്യമായ ഡിജിറ്റൽ റൈറ്റ്‌സോടെയാണ് പബ്ലിഷ് ചെയ്യുന്നത്.
+                    </p>
+
+                    <!-- Official Badges -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                        <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 text-center">
+                            <i class="fa-solid fa-shield-halved text-emerald-400 text-xl mb-2"></i>
+                            <h4 class="font-bold text-xs text-white">Copyright Protected</h4>
+                            <p class="text-[10px] text-slate-400">All Master Rights Belong to Ishq Network</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 text-center">
+                            <i class="fa-brands fa-youtube text-red-500 text-xl mb-2"></i>
+                            <h4 class="font-bold text-xs text-white">Verified OAC</h4>
+                            <p class="text-[10px] text-slate-400">YouTube Official Artist Channel</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 text-center">
+                            <i class="fa-solid fa-certificate text-amber-400 text-xl mb-2"></i>
+                            <h4 class="font-bold text-xs text-white">Original Creation</h4>
+                            <p class="text-[10px] text-slate-400">Pure-Voice Vocal Standards</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
+                    <h3 class="font-bold text-base text-white">ഔദ്യോഗികമായി ബന്ധപ്പെടാൻ</h3>
+                    <div class="space-y-3 text-xs text-slate-300">
+                        <p><i class="fa-solid fa-envelope text-purple-400 mr-2"></i> contact@ishqnetwork.com</p>
+                        <p><i class="fa-solid fa-location-dot text-rose-400 mr-2"></i> Thiruvananthapuram, Kerala, India</p>
+                    </div>
+                    <button onclick="alert('ഔദ്യോഗിക ഇമെയിൽ വഴി ബന്ധപ്പെടുക: contact@ishqnetwork.com')" class="w-full bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold text-xs py-3 rounded-xl transition">
+                        Official Inquiry Form
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal: Song Lyrics Popup -->
+    <div id="lyrics-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-amber-500/30 max-w-lg w-full space-y-4 relative max-h-[80vh] overflow-y-auto">
+            <button onclick="closeLyrics()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 id="lyrics-title" class="font-heading font-extrabold text-xl text-amber-400">വരികൾ</h3>
+            <div id="lyrics-body" class="text-xs sm:text-sm text-slate-300 space-y-2 whitespace-pre-line leading-relaxed font-sans">
+                <!-- Dynamic Content -->
             </div>
         </div>
     </div>
 
-    <footer>
-        © 2026 Ishq Network & Rasool Vocal HQ. All Rights Reserved.
+    <!-- Persistent Music Player Footer Bar -->
+    <div id="audio-bar" class="sticky bottom-0 z-40 glass-panel border-t border-purple-900/50 bg-slate-950/90 backdrop-blur-lg px-4 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            
+            <!-- Song Meta -->
+            <div class="flex items-center space-x-3 w-1/3 min-w-0">
+                <div id="player-bars-widget" class="flex items-end space-x-1 h-6 paused-bars shrink-0">
+                    <div class="v-bar"></div>
+                    <div class="v-bar"></div>
+                    <div class="v-bar"></div>
+                </div>
+                <div class="min-w-0">
+                    <h4 id="player-song-title" class="text-xs sm:text-sm font-bold text-white truncate">പിരിശം (Pirisham)</h4>
+                    <p id="player-artist-name" class="text-[10px] sm:text-xs text-purple-400 truncate">Rasool Vocal HQ &bull; Millennium Primes</p>
+                </div>
+            </div>
+
+            <!-- Play / Pause Controls -->
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleAudioPlayer()" id="main-play-btn" class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 text-white flex items-center justify-center shadow-lg transition">
+                    <i id="main-play-icon" class="fa-solid fa-play text-xs"></i>
+                </button>
+            </div>
+
+            <!-- Status Indicator -->
+            <div class="hidden sm:flex items-center space-x-2 w-1/3 justify-end text-[11px] text-cyan-400">
+                <i class="fa-solid fa-circle-nodes text-xs animate-pulse"></i>
+                <span id="player-mode-text">Pure Vocal Stream</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-900 py-8 px-4 text-center text-xs text-slate-500 space-y-2">
+        <p>&copy; 2026 <strong>Ishq Network / Rasool Vocal HQ</strong>. All Rights Reserved.</p>
+        <p class="text-[10px] text-slate-600">Pure Voice A Cappella & Hybrid Vocal Music Era &bull; Thiruvananthapuram, Kerala</p>
     </footer>
 
+    <!-- JavaScript Logic -->
+    <script>
+        // Tab Navigation System
+        function showTab(tabId) {
+            const views = document.querySelectorAll('.tab-view');
+            views.forEach(v => v.classList.add('hidden'));
+
+            const target = document.getElementById('view-' + tabId);
+            if (target) {
+                target.classList.remove('hidden');
+            }
+
+            // Update Tab Active Styling
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(t => {
+                t.classList.remove('text-purple-300', 'bg-purple-950/60', 'border', 'border-purple-500/30');
+                t.classList.add('text-slate-400');
+            });
+
+            const activeBtn = document.getElementById('nav-btn-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.add('text-purple-300', 'bg-purple-950/60', 'border', 'border-purple-500/30');
+                activeBtn.classList.remove('text-slate-400');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Hero Audio Visualizer Toggle Simulation
+        let isHeroPlaying = false;
+        function toggleHeroVisualizer() {
+            isHeroPlaying = !isHeroPlaying;
+            const heroBars = document.getElementById('hero-bars');
+            const heroIcon = document.getElementById('hero-play-icon');
+
+            if (isHeroPlaying) {
+                heroBars.classList.remove('paused-bars');
+                heroIcon.classList.remove('fa-play');
+                heroIcon.classList.add('fa-pause');
+            } else {
+                heroBars.classList.add('paused-bars');
+                heroIcon.classList.remove('fa-pause');
+                heroIcon.classList.add('fa-play');
+            }
+        }
+
+        // Main Music Player Logic Simulation
+        let isAudioPlaying = false;
+
+        function playTrack(title, artist, modeText, lyricKey) {
+            document.getElementById('player-song-title').innerText = title;
+            document.getElementById('player-artist-name').innerText = artist;
+            document.getElementById('player-mode-text').innerText = modeText;
+
+            isAudioPlaying = true;
+            updateMainPlayerUI();
+        }
+
+        function toggleAudioPlayer() {
+            isAudioPlaying = !isAudioPlaying;
+            updateMainPlayerUI();
+        }
+
+        function updateMainPlayerUI() {
+            const icon = document.getElementById('main-play-icon');
+            const bars = document.getElementById('player-bars-widget');
+
+            if (isAudioPlaying) {
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+                bars.classList.remove('paused-bars');
+            } else {
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+                bars.classList.add('paused-bars');
+            }
+        }
+
+        // Lyrics Database
+        const lyricsDB = {
+            'pirisham': "പിരിശം (Pirisham) - വരികൾ\n-------------------------------\nപ്രണയ വസന്തം തഴുകും വഴിയിൽ...\nഇശ്ഖിൻ തരംഗം വോക്കൽ ഹാർമണിയിൽ...\n\n(Pure Voice A Cappella Version)\nRasool Vocal HQ / Millennium Primes Release",
+            'paathi': "പാത്തി മക്കത്തുന്നുള്ള - വരികൾ\n-------------------------------\nപാത്തി മക്കത്തുന്നുള്ള നബിയിന്റെ സവിധേ...\nആത്മീയാനുഭവം വോക്കൽ ഈണങ്ങളിൽ...",
+            'medley': "മാപ്പിളപ്പാട്ട് വോക്കൽ മെഡ്‌ലി\n-------------------------------\nപരമ്പരാഗത മാപ്പിളപ്പാട്ടുകളുടെ ഹൈബ്രിഡ് വോക്കൽ കവർ...",
+            'ishq': "ഇശ്ഖ് തരംഗം\n-------------------------------\nപ്യുവർ വോക്കൽ ഐസൊലേഷനിൽ വിരിഞ്ഞ ആത്മീയാനുഭവം..."
+        };
+
+        function openLyrics(key) {
+            const modal = document.getElementById('lyrics-modal');
+            const body = document.getElementById('lyrics-body');
+            body.innerText = lyricsDB[key] || "വരികൾ ഉടൻ ലഭ്യമാകും.";
+            modal.classList.remove('hidden');
+        }
+
+        function closeLyrics() {
+            document.getElementById('lyrics-modal').classList.add('hidden');
+        }
+
+        // Fan Comments Post Logic
+        function postFanComment() {
+            const nameInput = document.getElementById('fan-name');
+            const msgInput = document.getElementById('fan-msg');
+
+            if (!nameInput.value.trim() || !msgInput.value.trim()) {
+                alert('ദയവായി പേരും അഭിപ്രായവും രേഖപ്പെടുത്തുക!');
+                return;
+            }
+
+            const list = document.getElementById('fan-comments-list');
+            const newComment = document.createElement('div');
+            newComment.className = 'bg-slate-950/60 p-3 rounded-xl border border-purple-500/30';
+            newComment.innerHTML = `<span class="font-bold text-xs text-purple-400">${nameInput.value.trim()}</span><p class="text-[11px] text-slate-300 mt-1">${msgInput.value.trim()}</p>`;
+
+            list.prepend(newComment);
+            nameInput.value = '';
+            msgInput.value = '';
+        }
+
+        // Interactive Poll
+        let pollVoted = false;
+        function votePoll(option) {
+            if (pollVoted) return;
+            pollVoted = true;
+            alert('നിങ്ങളുടെ വോട്ട് രേഖപ്പെടുത്തി! നന്ദി.');
+        }
+    </script>
 </body>
 </html>
+```
