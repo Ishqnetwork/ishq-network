@@ -1,4 +1,644 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rasool Vocal HQ - Google Knowledge Panel</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        googleBg: '#0e0f12',
+                        googleCard: '#18191d',
+                        googleBorder: '#2a2b30',
+                        googleHover: '#22242a',
+                        googleBlue: '#8ab4f8',
+                        googlePill: '#282a30',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-glow': '0 0 25px rgba(138, 180, 248, 0.25)',
+                        'card-depth': '0 12px 30px rgba(0, 0, 0, 0.6)',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom scrollbar hiding */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+        /* Gradient Text Effects for Logo Branding */
+        .text-gradient-brand {
+            background: linear-gradient(135deg, #ff2a5f 0%, #ffc107 25%, #28a745 50%, #007bff 75%, #9c27b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animated Audio Equalizer Soundwave */
+        @keyframes wavePulse {
+            0%, 100% { height: 4px; }
+            50% { height: 20px; }
+        }
+        .wave-bar { animation: wavePulse 1.2s infinite ease-in-out; }
+        .wb-1 { animation-delay: 0.1s; }
+        .wb-2 { animation-delay: 0.3s; }
+        .wb-3 { animation-delay: 0.2s; }
+        .wb-4 { animation-delay: 0.4s; }
+        .wb-5 { animation-delay: 0.15s; }
+
+        /* Profile Emblem 3D Hover Effect */
+        .logo-tilt-box {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+        }
+        .logo-tilt-box:hover {
+            transform: perspective(1000px) rotateX(8deg) rotateY(-8deg) scale(1.05);
+        }
+
+        /* Citation Badge */
+        .citation-tag {
+            font-size: 10px;
+            vertical-align: super;
+            background-color: rgba(138, 180, 248, 0.15);
+            color: #8ab4f8;
+            padding: 1px 4px;
+            border-radius: 4px;
+            margin-left: 2px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-[#0e0f12] text-slate-100 min-h-screen font-sans antialiased selection:bg-googleBlue selection:text-black">
+
+    <!-- Toast Notification Banner -->
+    <div id="toast" class="fixed top-5 right-5 z-50 transform -translate-y-24 opacity-0 transition-all duration-300 bg-googleCard text-white px-5 py-3 rounded-xl shadow-card-depth flex items-center gap-3 border border-googleBorder">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-googleBlue text-lg"></i>
+        <span id="toast-msg" class="text-xs sm:text-sm font-medium">Notification</span>
+    </div>
+
+    <!-- Header & Google Search Nav -->
+    <header class="sticky top-0 z-40 bg-[#121316]/95 backdrop-blur-md border-b border-googleBorder px-4 sm:px-6 py-3">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+            
+            <!-- Google Logo & Pill Search Box -->
+            <div class="flex items-center gap-4 w-full md:w-auto">
+                <div class="text-2xl font-black tracking-tight flex items-center cursor-pointer select-none" onclick="window.location.reload()">
+                    <span class="text-[#4285f4]">G</span>
+                    <span class="text-[#ea4335]">o</span>
+                    <span class="text-[#fbbc05]">o</span>
+                    <span class="text-[#4285f4]">g</span>
+                    <span class="text-[#34a853]">l</span>
+                    <span class="text-[#ea4335]">e</span>
+                </div>
+                
+                <!-- Search Input Bar -->
+                <div class="flex-1 md:w-[480px] bg-[#1e2025] hover:bg-[#252830] border border-googleBorder rounded-full px-4 py-2 flex items-center gap-3 shadow-inner transition">
+                    <input type="text" value="Rasool Vocal HQ" readonly class="bg-transparent text-sm text-slate-100 focus:outline-none w-full font-medium cursor-default">
+                    <button class="text-slate-400 hover:text-slate-200" title="Clear"><i class="fa-solid fa-xmark text-xs"></i></button>
+                    <span class="w-[1px] h-4 bg-googleBorder"></span>
+                    <button onclick="speakText()" title="Voice Search / Read" class="text-googleBlue hover:text-blue-300"><i class="fa-solid fa-microphone text-sm"></i></button>
+                    <button class="text-googleBlue hover:text-blue-300" title="Search"><i class="fa-solid fa-magnifying-glass text-sm"></i></button>
+                </div>
+            </div>
+
+            <!-- Header Action Controls -->
+            <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+                <button id="lang-toggle" onclick="toggleLanguage()" class="px-3 py-1.5 rounded-lg bg-googleCard hover:bg-googleHover border border-googleBorder text-xs font-semibold text-slate-300 transition flex items-center gap-2">
+                    <i class="fa-solid fa-language text-sm text-googleBlue"></i>
+                    <span id="lang-label">മലയാളം (ML)</span>
+                </button>
+
+                <button onclick="openDomainModal()" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-googleCard hover:bg-googleHover border border-googleBorder text-xs text-slate-300 transition">
+                    <i class="fa-solid fa-shield-halved text-xs text-amber-400"></i>
+                    <span id="promote-btn-text">Promote panel</span>
+                </button>
+
+                <!-- Profile Badge -->
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-red-500 via-amber-400 to-blue-500 p-[2px] cursor-pointer" onclick="showToast('Google Account: Rasool Vocal HQ')">
+                    <div class="w-full h-full bg-[#121316] rounded-full flex items-center justify-center text-xs font-bold text-white">
+                        RV
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Nav Pills Bar -->
+        <div class="max-w-6xl mx-auto flex items-center gap-6 mt-3 text-xs font-medium text-slate-400 overflow-x-auto no-scrollbar pt-1">
+            <button class="text-googleBlue font-semibold border-b-2 border-googleBlue pb-2 flex items-center gap-1.5 whitespace-nowrap">
+                <i class="fa-solid fa-sparkles text-amber-400"></i> AI Mode
+            </button>
+            <button class="text-slate-200 font-semibold pb-2 border-b-2 border-slate-200 whitespace-nowrap">All</button>
+            <button class="hover:text-slate-200 pb-2 whitespace-nowrap">Videos</button>
+            <button class="hover:text-slate-200 pb-2 whitespace-nowrap">Images</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+        <!-- Top Profile & Header Branding Banner Container -->
+        <div class="relative overflow-hidden rounded-3xl bg-[#141519] p-6 sm:p-8 border border-googleBorder shadow-card-depth">
+            
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 z-10 relative">
+                
+                <!-- Left Profile Avatar & Title Section -->
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
+                    
+                    <!-- 3D Lotus Microphone Mandala Logo Avatar -->
+                    <div class="logo-tilt-box relative group cursor-pointer" onclick="showToast('Verified Knowledge Panel Entity')">
+                        <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-red-500 via-amber-400 via-emerald-400 to-blue-500 blur-md opacity-80 group-hover:opacity-100 transition duration-500"></div>
+                        <div class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#0a0b0e] p-1.5 flex items-center justify-center border border-slate-700 shadow-2xl overflow-hidden">
+                            <!-- SVG Multi-color Flower Emblem -->
+                            <svg viewBox="0 0 100 100" class="w-full h-full transform transition duration-500 group-hover:scale-105">
+                                <defs>
+                                    <linearGradient id="mandalaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#ff2a5f" />
+                                        <stop offset="25%" style="stop-color:#ffc107" />
+                                        <stop offset="50%" style="stop-color:#28a745" />
+                                        <stop offset="75%" style="stop-color:#007bff" />
+                                        <stop offset="100%" style="stop-color:#9c27b0" />
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="50" cy="50" r="48" fill="#0c0d10"/>
+                                <g fill="url(#mandalaGrad)" opacity="0.95">
+                                    <path d="M50 8 C55 23, 67 28, 82 28 C67 38, 62 48, 62 63 C52 53, 42 53, 32 63 C37 48, 32 38, 17 28 C32 28, 42 23, 50 8 Z"/>
+                                    <path d="M50 92 C45 77, 33 72, 18 72 C33 62, 38 52, 38 37 C48 47, 58 47, 68 37 C63 52, 68 62, 83 72 C68 72, 58 77, 50 92 Z"/>
+                                </g>
+                                <circle cx="50" cy="50" r="22" fill="#0e1015" stroke="url(#mandalaGrad)" stroke-width="2.5"/>
+                                <!-- Mic Icon -->
+                                <path d="M50 36 C46 36, 43 39, 43 43 L43 49 C43 53, 46 56, 50 56 C54 56, 57 53, 57 49 L57 43 C57 39, 54 36, 50 36 Z" fill="#ffffff"/>
+                                <path d="M40 48 C40 54, 44 58, 50 58 C56 58, 60 54, 60 48" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M50 58 L50 64 M43 64 L57 64" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Profile Name & Follow Controls -->
+                    <div class="mt-1">
+                        <div class="flex items-center justify-center sm:justify-start gap-2">
+                            <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Rasool Vocal HQ</h1>
+                            <i class="fa-solid fa-circle-check text-googleBlue text-lg" title="Verified Knowledge Panel"></i>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-0.5">@rasoolvocalhq</p>
+
+                        <!-- Action Pills Buttons (Includes Follow Account Button) -->
+                        <div class="flex items-center justify-center sm:justify-start gap-2.5 mt-4 flex-wrap">
+                            
+                            <!-- Main Follow Account Button -->
+                            <button id="follow-account-btn" onclick="toggleFollowAccount()" class="px-5 py-2 rounded-full bg-googleBlue hover:bg-blue-300 text-black font-bold text-xs shadow-md transition-all flex items-center gap-2">
+                                <i id="follow-icon" class="fa-solid fa-user-plus text-xs"></i>
+                                <span id="follow-text">+ Follow</span>
+                                <span id="follower-count" class="bg-black/15 px-2 py-0.5 rounded-full text-[11px] font-mono">12.4K</span>
+                            </button>
+
+                            <button class="px-4 py-2 rounded-full bg-googlePill hover:bg-googleHover border border-googleBorder text-xs text-slate-200 font-medium transition">
+                                Profile Info
+                            </button>
+                            <button class="px-4 py-2 rounded-full bg-googlePill hover:bg-googleHover border border-googleBorder text-xs text-slate-200 font-medium transition">
+                                Videos
+                            </button>
+                            <button class="px-4 py-2 rounded-full bg-googlePill hover:bg-googleHover border border-googleBorder text-xs text-slate-200 font-medium transition">
+                                Images
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Branding Graphic & Soundwave Header -->
+                <div class="flex flex-col items-center md:items-end">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center p-1 shadow-lg">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="url(#mandalaGrad)" stroke-width="8"/>
+                                <circle cx="50" cy="50" r="20" fill="#ffc107"/>
+                            </svg>
+                        </div>
+                        <span class="text-3xl sm:text-4xl font-black text-gradient-brand tracking-tight">Rasool Vocal</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-xs font-bold tracking-widest text-slate-300 uppercase">ISHQ NETWORK</span>
+                        <div class="flex items-center gap-1 h-5">
+                            <span class="w-1 bg-red-500 rounded-full wb-1 wave-bar"></span>
+                            <span class="w-1 bg-amber-400 rounded-full wb-2 wave-bar"></span>
+                            <span class="w-1 bg-emerald-400 rounded-full wb-3 wave-bar"></span>
+                            <span class="w-1 bg-blue-500 rounded-full wb-4 wave-bar"></span>
+                            <span class="w-1 bg-purple-500 rounded-full wb-5 wave-bar"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 2-COLUMN GRID LAYOUT (AI Overview & Sidebar) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- LEFT MAIN SECTION -->
+            <div class="lg:col-span-2 space-y-6">
+
+                <!-- AI Overview Section -->
+                <section class="bg-[#141519] rounded-2xl p-5 border border-googleBorder shadow-lg relative">
+                    <div class="flex items-center justify-between pb-3 mb-3 border-b border-googleBorder">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-sparkles text-googleBlue text-sm"></i>
+                            <h2 id="ai-title" class="text-base font-bold text-slate-100">AI Overview</h2>
+                        </div>
+                        <button id="tts-btn" onclick="toggleTTS()" class="px-2.5 py-1 rounded-lg bg-googleCard hover:bg-googleHover text-xs text-googleBlue border border-googleBorder transition flex items-center gap-1.5 font-medium">
+                            <i id="tts-icon" class="fa-solid fa-volume-high"></i>
+                            <span id="tts-label">Listen</span>
+                        </button>
+                    </div>
+
+                    <div class="text-xs sm:text-sm text-slate-300 leading-relaxed space-y-3">
+                        <p id="bio-p1">
+                            Rasool Vocal HQ is a sene-nastic zunable premium release classic. Noorilameen, and assakranoit Wootanao Vocal's proiidissign, Ishq Network.<span class="citation-tag">[1]</span> Accapohman to neamonck with develop and Mappiis Pettu.<span class="citation-tag">[2]</span> Aseetnent to nwsham mtermective oower of Mappila Pattu fo-eomerating conotve-ieuming quisuisement due to content in comhanthamwai communities.<span class="citation-tag">[1]</span><span class="citation-tag">[3]</span>
+                        </p>
+
+                        <!-- Expandable Details Accordion -->
+                        <div id="bio-accordion" class="hidden pt-3 border-t border-googleBorder/60 space-y-2 text-xs">
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                <div class="bg-[#1c1d22] p-2.5 rounded-lg border border-googleBorder">
+                                    <span class="text-slate-400 block text-[10px]">Lead Vocalist</span>
+                                    <span class="font-semibold text-slate-200">Noorilameen</span>
+                                </div>
+                                <div class="bg-[#1c1d22] p-2.5 rounded-lg border border-googleBorder">
+                                    <span class="text-slate-400 block text-[10px]">Base Location</span>
+                                    <span class="font-semibold text-slate-200">Thiruvananthapuram</span>
+                                </div>
+                                <div class="bg-[#1c1d22] p-2.5 rounded-lg border border-googleBorder">
+                                    <span class="text-slate-400 block text-[10px]">Network Label</span>
+                                    <span class="font-semibold text-slate-200">Ishq Network</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="read-more-btn" onclick="toggleReadMore()" class="text-xs text-googleBlue hover:underline flex items-center gap-1 pt-1 font-medium">
+                            <span id="read-more-text">Show details</span>
+                            <i id="read-more-icon" class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Latest Posts Horizontal Carousel -->
+                <section class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h2 id="posts-title" class="text-base font-bold text-slate-200">Latest posts</h2>
+                        <div class="flex gap-1.5">
+                            <button onclick="scrollCarousel(-260)" class="w-7 h-7 rounded-full bg-googleCard hover:bg-googleHover text-slate-300 flex items-center justify-center transition border border-googleBorder"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                            <button onclick="scrollCarousel(260)" class="w-7 h-7 rounded-full bg-googleCard hover:bg-googleHover text-slate-300 flex items-center justify-center transition border border-googleBorder"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Video Cards Carousel Container -->
+                    <div id="video-carousel" class="flex items-center gap-3 overflow-x-auto no-scrollbar scroll-smooth pb-2">
+                        
+                        <!-- Video Card 1 -->
+                        <div onclick="playVideoModal('Subarkkathil Enikkente Ente Vadhu (Part 1)', 'Jan 11, 2023', '3:33', 'https://www.youtube.com/embed/dQw4w9WgXcQ')" class="min-w-[210px] sm:min-w-[230px] bg-[#141519] hover:bg-[#1c1d22] rounded-2xl border border-googleBorder overflow-hidden shadow-md cursor-pointer group transition duration-300">
+                            <div class="relative h-36 bg-slate-900 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Song Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                                <span class="absolute bottom-2 right-2 bg-black/80 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded">3:33</span>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-9 h-9 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                                        <i class="fa-solid fa-play text-xs ml-0.5"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="text-xs font-bold text-slate-100 line-clamp-2 leading-snug">Subarkkathil Enikkente Ente Vadhu (Part 1)</h3>
+                                <p class="text-[11px] text-slate-400 mt-2">Jan 11, 2023</p>
+                            </div>
+                        </div>
+
+                        <!-- Video Card 2 -->
+                        <div onclick="playVideoModal('Pirisham A Cappella Cover (Najran Kabeer)', 'Jan 19, 2023', '8:33', 'https://www.youtube.com/embed/dQw4w9WgXcQ')" class="min-w-[210px] sm:min-w-[230px] bg-[#141519] hover:bg-[#1c1d22] rounded-2xl border border-googleBorder overflow-hidden shadow-md cursor-pointer group transition duration-300">
+                            <div class="relative h-36 bg-slate-900 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80" alt="Song Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                                <span class="absolute top-2 left-2 bg-[#242424]/90 text-slate-200 text-[10px] font-semibold px-2 py-0.5 rounded border border-googleBorder">Part 1</span>
+                                <span class="absolute bottom-2 right-2 bg-black/80 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded">8:33</span>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-9 h-9 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                                        <i class="fa-solid fa-play text-xs ml-0.5"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="text-xs font-bold text-slate-100 line-clamp-2 leading-snug">Pirisham A Cappella Cover (Najran Kabeer)</h3>
+                                <p class="text-[11px] text-slate-400 mt-2">Jan 19, 2023</p>
+                            </div>
+                        </div>
+
+                        <!-- Video Card 3 -->
+                        <div onclick="playVideoModal('Vambutta Hamsa & Konjalle Penne', 'Jan 11, 2023', '3:38', 'https://www.youtube.com/embed/dQw4w9WgXcQ')" class="min-w-[210px] sm:min-w-[230px] bg-[#141519] hover:bg-[#1c1d22] rounded-2xl border border-googleBorder overflow-hidden shadow-md cursor-pointer group transition duration-300">
+                            <div class="relative h-36 bg-slate-900 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80" alt="Song Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                                <span class="absolute bottom-2 right-2 bg-black/80 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded">3:38</span>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-9 h-9 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                                        <i class="fa-solid fa-play text-xs ml-0.5"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <h3 class="text-xs font-bold text-slate-100 line-clamp-2 leading-snug">Vambutta Hamsa & Konjalle Penne</h3>
+                                <p class="text-[11px] text-slate-400 mt-2">Jan 11, 2023</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- RIGHT SIDEBAR (Social Badges & Info) -->
+            <div class="space-y-6">
+
+                <section class="bg-[#141519] rounded-2xl p-5 border border-googleBorder shadow-lg space-y-4">
+                    <h2 id="social-title" class="text-base font-bold text-slate-200">Social media</h2>
+
+                    <!-- 3 Social Cards Grid -->
+                    <div class="grid grid-cols-3 gap-3">
+                        
+                        <!-- YouTube -->
+                        <a href="https://youtube.com" target="_blank" class="bg-[#1c1d22] hover:bg-googleHover p-3 rounded-xl border border-googleBorder flex flex-col items-center justify-center text-center group transition">
+                            <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center text-xl mb-2 shadow-md group-hover:scale-105 transition">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-200">YouTube</span>
+                            <span class="text-[10px] text-googleBlue flex items-center gap-1 mt-0.5">
+                                Verified <i class="fa-solid fa-circle-check text-[9px]"></i>
+                            </span>
+                        </a>
+
+                        <!-- Instagram -->
+                        <a href="https://instagram.com" target="_blank" class="bg-[#1c1d22] hover:bg-googleHover p-3 rounded-xl border border-googleBorder flex flex-col items-center justify-center text-center group transition">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center text-xl mb-2 shadow-md group-hover:scale-105 transition">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-200">Instagram</span>
+                            <span class="text-[10px] text-googleBlue flex items-center gap-1 mt-0.5">
+                                Verified <i class="fa-solid fa-circle-check text-[9px]"></i>
+                            </span>
+                        </a>
+
+                        <!-- Facebook -->
+                        <a href="https://facebook.com" target="_blank" class="bg-[#1c1d22] hover:bg-googleHover p-3 rounded-xl border border-googleBorder flex flex-col items-center justify-center text-center group transition">
+                            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl mb-2 shadow-md group-hover:scale-105 transition">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </div>
+                            <span class="text-xs font-semibold text-slate-200">Facebook</span>
+                            <span class="text-[10px] text-googleBlue flex items-center gap-1 mt-0.5">
+                                Verified <i class="fa-solid fa-circle-check text-[9px]"></i>
+                            </span>
+                        </a>
+
+                    </div>
+
+                    <div class="pt-1 text-right">
+                        <button onclick="showToast('Feedback form opened')" class="text-xs text-slate-400 hover:text-slate-200 transition">Feedback</button>
+                    </div>
+                </section>
+
+                <!-- Knowledge Graph Entity Card -->
+                <section class="bg-[#141519] rounded-2xl p-4 border border-googleBorder text-xs text-slate-400 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span>Knowledge Panel ID</span>
+                        <span class="font-mono text-slate-200">/g/11s_rasool_hq</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span>Source</span>
+                        <span class="text-googleBlue">Google Music Graph</span>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-[#141519] border border-googleBorder w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl relative">
+            <div class="p-3 border-b border-googleBorder flex items-center justify-between">
+                <h3 id="modal-video-title" class="font-bold text-xs sm:text-sm text-slate-100">Video Title</h3>
+                <button onclick="closeVideoModal()" class="w-7 h-7 rounded-full bg-googleCard hover:bg-googleHover text-slate-300 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
+            </div>
+            <div class="relative pt-[56.25%] bg-black">
+                <iframe id="modal-iframe" class="absolute inset-0 w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="p-3 flex items-center justify-between text-xs text-slate-400">
+                <span id="modal-video-meta">Jan 11, 2023 • 3:33</span>
+                <button onclick="showToast('Link copied to clipboard')" class="text-googleBlue hover:underline flex items-center gap-1">
+                    <i class="fa-solid fa-link text-xs"></i> Share Link
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Domain Connect Modal -->
+    <div id="domain-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-[#141519] border border-googleBorder w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4 relative">
+            <div class="flex items-center justify-between border-b border-googleBorder pb-3">
+                <h3 class="font-bold text-sm text-slate-100 flex items-center gap-2">
+                    <i class="fa-solid fa-globe text-googleBlue"></i> Promoted Domain Setup
+                </h3>
+                <button onclick="closeDomainModal()" class="w-7 h-7 rounded-full bg-googleCard hover:bg-googleHover text-slate-300 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+                നിങ്ങളുടെ സ്വന്തം ഡൊമൈൻ ഇതിനായി നൽകാൻ DNS റെക്കോർഡുകളിൽ <strong>CNAME</strong> പേജ് ലിങ്ക് ചെയ്യുക.
+            </p>
+            <div class="bg-[#1c1d22] p-3 rounded-xl border border-googleBorder text-xs space-y-1 font-mono">
+                <div class="text-slate-400">Type: <span class="text-white">CNAME</span></div>
+                <div class="text-slate-400">Target: <span class="text-googleBlue">ghs.googlehosted.com</span></div>
+            </div>
+            <button onclick="closeDomainModal(); showToast('Domain connection request sent!')" class="w-full py-2 bg-googleBlue text-black font-semibold text-xs rounded-xl hover:opacity-90 transition">
+                Confirm Connection
+            </button>
+        </div>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        let currentLang = 'en';
+        let isFollowing = false;
+        let followerCount = 12400;
+
+        const translations = {
+            en: {
+                aiTitle: "AI Overview",
+                bioP1: `Rasool Vocal HQ is a sene-nastic zunable premium release classic. Noorilameen, and assakranoit Wootanao Vocal's proiidissign, Ishq Network.<span class="citation-tag">[1]</span> Accapohman to neamonck with develop and Mappiis Pettu.<span class="citation-tag">[2]</span> Aseetnent to nwsham mtermective oower of Mappila Pattu fo-eomerating conotve-ieuming quisuisement due to content in comhanthamwai communities.<span class="citation-tag">[1]</span><span class="citation-tag">[3]</span>`,
+                socialTitle: "Social media",
+                postsTitle: "Latest posts",
+                langBtn: "മലയാളം (ML)",
+                promoteBtn: "Promote panel"
+            },
+            ml: {
+                aiTitle: "എ.ഐ. അവലോകനം (AI Overview)",
+                bioP1: `റസൂൽ വോക്കൽ HQ (Rasool Vocal HQ) പ്രശസ്തമായ ഇഷ്‌ക് നെറ്റ്‌വർക്കിന് (Ishq Network) കീഴിൽ പ്രവർത്തിക്കുന്ന സംഗീത പ്രൊഡക്ഷൻ ബ്രാൻഡാണ്. തിരുവനന്തപുരം സ്വദേശിയായ നൂറിലാമീന്റെ നേതൃത്വത്തിൽ തനതായ അക്കാപ്പെല്ല വോക്കൽ മിക്സിംഗിലൂടെയും മാപ്പിളപ്പാട്ടുകളിലൂടെയും വൻ ജനപ്രീതി നേടിയ കലാകൂട്ടായ്മയാണിത്.<span class="citation-tag">[1]</span><span class="citation-tag">[2]</span>`,
+                socialTitle: "സോഷ്യൽ മീഡിയ ലിങ്കുകൾ",
+                postsTitle: "ഏറ്റവും പുതിയ പോസ്റ്റുകൾ",
+                langBtn: "English (EN)",
+                promoteBtn: "പാനൽ പ്രൊമോട്ട് ചെയ്യുക"
+            }
+        };
+
+        function toggleFollowAccount() {
+            const btn = document.getElementById('follow-account-btn');
+            const icon = document.getElementById('follow-icon');
+            const text = document.getElementById('follow-text');
+            const count = document.getElementById('follower-count');
+
+            isFollowing = !isFollowing;
+
+            if (isFollowing) {
+                followerCount++;
+                btn.className = "px-5 py-2 rounded-full bg-googlePill hover:bg-googleHover border border-googleBorder text-slate-100 font-bold text-xs shadow-md transition-all flex items-center gap-2";
+                icon.className = "fa-solid fa-user-check text-xs text-googleBlue";
+                text.innerText = "Following";
+                count.innerText = "12.4K+";
+                showToast("You are now following Rasool Vocal HQ!");
+            } else {
+                followerCount--;
+                btn.className = "px-5 py-2 rounded-full bg-googleBlue hover:bg-blue-300 text-black font-bold text-xs shadow-md transition-all flex items-center gap-2";
+                icon.className = "fa-solid fa-user-plus text-xs";
+                text.innerText = "+ Follow";
+                count.innerText = "12.4K";
+                showToast("Unfollowed Rasool Vocal HQ");
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ml' : 'en';
+            const t = translations[currentLang];
+
+            document.getElementById('ai-title').innerText = t.aiTitle;
+            document.getElementById('bio-p1').innerHTML = t.bioP1;
+            document.getElementById('social-title').innerText = t.socialTitle;
+            document.getElementById('posts-title').innerText = t.postsTitle;
+            document.getElementById('lang-label').innerText = t.langBtn;
+            document.getElementById('promote-btn-text').innerText = t.promoteBtn;
+
+            showToast(currentLang === 'ml' ? 'ഭാഷ മലയാളത്തിലേക്ക് മാറ്റി' : 'Language switched to English');
+        }
+
+        function toggleReadMore() {
+            const acc = document.getElementById('bio-accordion');
+            const txt = document.getElementById('read-more-text');
+            const icon = document.getElementById('read-more-icon');
+
+            if (acc.classList.contains('hidden')) {
+                acc.classList.remove('hidden');
+                txt.innerText = "Hide details";
+                icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                acc.classList.add('hidden');
+                txt.innerText = "Show details";
+                icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        }
+
+        let isSpeaking = false;
+        function toggleTTS() {
+            const label = document.getElementById('tts-label');
+            const icon = document.getElementById('tts-icon');
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                label.innerText = "Listen";
+                icon.className = "fa-solid fa-volume-high";
+            } else {
+                speakText();
+            }
+        }
+
+        function speakText() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const text = currentLang === 'en' 
+                    ? "Rasool Vocal HQ is a music group and digital production label under Ishq Network, lead by vocalist Noorilameen."
+                    : "റസൂൽ വോക്കൽ HQ ഇഷ്‌ക് നെറ്റ്‌വർക്കിന് കീഴിൽ പ്രവർത്തിക്കുന്ന സംഗീത കൂട്ടായ്മയാണ്.";
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                
+                utterance.onstart = () => {
+                    isSpeaking = true;
+                    document.getElementById('tts-label').innerText = "Playing...";
+                    document.getElementById('tts-icon').className = "fa-solid fa-square text-red-500 animate-pulse";
+                };
+
+                utterance.onend = () => {
+                    isSpeaking = false;
+                    document.getElementById('tts-label').innerText = "Listen";
+                    document.getElementById('tts-icon').className = "fa-solid fa-volume-high";
+                };
+
+                window.speechSynthesis.speak(utterance);
+            } else {
+                showToast("Speech synthesis not supported.");
+            }
+        }
+
+        function scrollCarousel(offset) {
+            document.getElementById('video-carousel').scrollBy({ left: offset, behavior: 'smooth' });
+        }
+
+        function playVideoModal(title, date, duration, videoUrl) {
+            document.getElementById('modal-video-title').innerText = title;
+            document.getElementById('modal-video-meta').innerText = `${date} • ${duration}`;
+            document.getElementById('modal-iframe').src = videoUrl;
+            document.getElementById('video-modal').classList.remove('hidden');
+        }
+
+        function closeVideoModal() {
+            document.getElementById('modal-iframe').src = "";
+            document.getElementById('video-modal').classList.add('hidden');
+        }
+
+        function openDomainModal() {
+            document.getElementById('domain-modal').classList.remove('hidden');
+        }
+
+        function closeDomainModal() {
+            document.getElementById('domain-modal').classList.add('hidden');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('-translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('-translate-y-24', 'opacity-0');
+            }, 2600);
+        }
+    </script>
+</body>
+</html>
+```
 
 
 
