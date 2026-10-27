@@ -1,13 +1,1015 @@
 
+```html
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishq Network - Rasool Vocal HQ | Google AI Overview & Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#08090d',
+                        cardBg: '#14141f',
+                        cardHover: '#1c1c2e',
+                        accentBlue: '#8ab4f8',
+                        googleBorder: '#2a2a3a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Google Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #08090d;
+            color: #e8eaed;
+            font-family: 'Inter', 'Google Sans', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #08090d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a3a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3c4043;
+        }
+        .rainbow-glow {
+            background: linear-gradient(90deg, #ff0080, #ff8a00, #ffde00, #00ff80, #00aaff, #a000ff);
+        }
+        .ai-border-glow {
+            box-shadow: 0 0 25px rgba(138, 180, 248, 0.15);
+            border: 1px solid rgba(138, 180, 248, 0.3);
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        .animate-glow {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-blue-500 selection:text-white">
 
+    <!-- Top Rainbow Glow Bar -->
+    <div class="h-1 w-full rainbow-glow animate-glow sticky top-0 z-50"></div>
 
+    <!-- Header & Search Bar Section -->
+    <header class="w-full max-w-4xl mx-auto px-4 pt-6 pb-4">
+        <!-- Brand Title Header -->
+        <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-full rainbow-glow p-0.5 flex items-center justify-center shadow-lg">
+                    <div class="w-full h-full bg-[#14141f] rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-microphone-lines text-amber-400 text-lg"></i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold flex items-center gap-1.5 text-white">
+                        Ishq Network - Rasool Vocal HQ
+                        <i class="fa-solid fa-circle-check text-blue-400 text-sm" title="Verified Creator"></i>
+                    </h1>
+                    <p class="text-xs text-gray-400">@rasoolvocalhq &bull; Official Portal &bull; <span id="headerFollowerCount">32.4k</span> Followers</p>
+                </div>
+            </div>
+            <!-- Follow Button in Header -->
+            <button id="headerFollowBtn" onclick="toggleFollow()" class="px-5 py-2 rounded-full font-medium text-sm transition-all shadow-md flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white">
+                <i class="fa-solid fa-user-plus" id="headerFollowIcon"></i>
+                <span id="headerFollowText">Follow</span>
+            </button>
+        </div>
 
+        <!-- Google Style Pill Search Bar -->
+        <div class="relative w-full max-w-2xl mx-auto mb-6">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <input type="text" id="searchInput" value="rasoolvocalhq" class="w-full pl-11 pr-24 py-3.5 bg-[#14141f] border border-[#2a2a3a] rounded-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 transition-all text-sm shadow-inner" placeholder="Search vocals, artists, Mappila pattu...">
+            <div class="absolute inset-y-0 right-2 flex items-center space-x-2">
+                <button onclick="clearSearch()" class="text-gray-400 hover:text-white px-2 text-xs">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="h-5 w-[1px] bg-gray-700"></div>
+                <span class="text-xs text-blue-400 font-semibold px-2">HQ AI</span>
+            </div>
+        </div>
 
+        <!-- Filter Tabs: [All] [Links] [Community] [AI Mode] -->
+        <nav class="flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-none border-b border-[#2a2a3a]">
+            <button onclick="switchTab('all')" id="tab-all" class="tab-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-blue-600/20 text-blue-400 border border-blue-500/30 flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-solid fa-globe"></i> All
+            </button>
+            <button onclick="switchTab('links')" id="tab-links" class="tab-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-[#14141f] text-gray-300 hover:bg-[#1c1c2e] border border-[#2a2a3a] flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-solid fa-link"></i> Links
+            </button>
+            <button onclick="switchTab('community')" id="tab-community" class="tab-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-[#14141f] text-gray-300 hover:bg-[#1c1c2e] border border-[#2a2a3a] flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-solid fa-users"></i> Community
+            </button>
+            <button onclick="switchTab('ai-mode')" id="tab-ai-mode" class="tab-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-[#14141f] text-gray-300 hover:bg-[#1c1c2e] border border-[#2a2a3a] flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i> AI Mode
+            </button>
+        </nav>
+    </header>
 
+    <!-- Main Content Area Container (Max Width 1200px centered) -->
+    <main class="w-full max-w-[1200px] mx-auto px-4 py-6 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-6">
 
+        <!-- Left Column / Main Feed Area (Col 8 on Large Screens) -->
+        <div class="lg:col-span-8 space-y-6">
 
+            <!-- TAB CONTENT: ALL (Default Google AI Overview + Sections) -->
+            <div id="content-all" class="space-y-6 tab-content-pane">
+                
+                <!-- Google AI Overview Card -->
+                <section class="bg-[#14141f] rounded-2xl p-6 ai-border-glow relative overflow-hidden transition-all">
+                    <!-- Top Sparkles & TTS Bar -->
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="flex h-7 w-7 items-center justify-center rounded-full bg-blue-500/10 text-blue-400">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </span>
+                            <h2 class="text-base font-semibold tracking-wide text-blue-200">AI Overview</h2>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <!-- Translate Button -->
+                            <button onclick="toggleTranslation()" id="translateBtn" class="text-xs bg-gray-800 hover:bg-gray-700 text-gray-200 px-3 py-1.5 rounded-full border border-gray-700 flex items-center gap-1.5 transition-all">
+                                <i class="fa-solid fa-language text-blue-400"></i>
+                                <span id="translateText">മലയാളം (Malayalam)</span>
+                            </button>
+                            <!-- TTS Audio Speaker Icon -->
+                            <button onclick="playOverviewSpeech()" class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-300 transition-all" title="Listen Audio Summary">
+                                <i class="fa-solid fa-volume-high text-xs" id="ttsIcon"></i>
+                            </button>
+                        </div>
+                    </div>
 
+                    <!-- Main Paragraph Content (Bilingual Support) -->
+                    <div id="aiDescriptionText" class="text-gray-300 text-sm leading-relaxed space-y-3">
+                        <p>
+                            <strong>Rasool Vocal HQ</strong> (<span class="text-blue-400">@rasoolvocalhq</span>) is an official independent music platform and channel owned and produced by Ishq Network, fronted by renowned vocalist <span class="text-amber-300 font-medium">Noorilameen</span> from Thiruvananthapuram, Kerala, India. Dedicated to pure-voice, unedited a cappella performances, soulful Mappila pattu, and Islamic devotional tracks.
+                        </p>
+                    </div>
 
+                    <!-- Collapsible Key Details -->
+                    <div class="mt-4 pt-4 border-t border-gray-800">
+                        <div id="collapsibleDetails" class="hidden space-y-2 text-xs text-gray-300 bg-[#0e0f12] p-4 rounded-xl border border-gray-800">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <div><strong class="text-blue-300">Artist:</strong> Noorilameen</div>
+                                <div><strong class="text-blue-300">Network & Label:</strong> Ishq Network</div>
+                                <div><strong class="text-blue-300">Location:</strong> Thiruvananthapuram, Kerala, India</div>
+                                <div><strong class="text-blue-300">Style:</strong> Pure-voice a cappella, Naat, Nasheed</div>
+                            </div>
+                            <div class="pt-2 border-t border-gray-800/60">
+                                <strong class="text-amber-300">Notable Covers:</strong> "Subarkkathil Enikkente Ente Vadhu" (Part 1), "Pirisham", "Vambutta Hamsa", "Fitna", "Konjalle Penne".
+                            </div>
+                        </div>
+                        
+                        <button onclick="toggleShowMore()" id="showMoreBtn" class="w-full mt-3 py-2 text-xs font-semibold text-blue-400 hover:text-blue-300 flex items-center justify-center gap-1 bg-blue-950/20 hover:bg-blue-900/30 rounded-lg transition-all border border-blue-900/30">
+                            <span id="showMoreText">Show More Details</span>
+                            <i class="fa-solid fa-chevron-down text-[10px]" id="showMoreIcon"></i>
+                        </button>
+                    </div>
+                </section>
 
+                <!-- Engagement & Stats Banner -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="bg-[#14141f] p-4 rounded-xl border border-[#2a2a3a] text-center">
+                        <div class="text-2xl font-bold text-blue-400" id="statFollowers">32.4K</div>
+                        <div class="text-xs text-gray-400 mt-1">Active Followers</div>
+                    </div>
+                    <div class="bg-[#14141f] p-4 rounded-xl border border-[#2a2a3a] text-center">
+                        <div class="text-2xl font-bold text-amber-400">124+</div>
+                        <div class="text-xs text-gray-400 mt-1">Vocal Tracks</div>
+                    </div>
+                    <div class="bg-[#14141f] p-4 rounded-xl border border-[#2a2a3a] text-center">
+                        <div class="text-2xl font-bold text-emerald-400" id="statEngagement">98.4%</div>
+                        <div class="text-xs text-gray-400 mt-1">Engagement Rate</div>
+                    </div>
+                    <div class="bg-[#14141f] p-4 rounded-xl border border-[#2a2a3a] text-center">
+                        <div class="text-2xl font-bold text-purple-400">4.9 ★</div>
+                        <div class="text-xs text-gray-400 mt-1">Audience Rating</div>
+                    </div>
+                </div>
 
+                <!-- Verified Social Links Grid / Carousel Section -->
+                <section class="bg-[#14141f] rounded-2xl p-6 border border-[#2a2a3a]">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-base font-semibold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-share-nodes text-blue-400"></i> Official Verified Networks
+                        </h3>
+                        <span class="text-xs text-gray-400">Direct Secure Links</span>
+                    </div>
 
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                        <!-- YouTube -->
+                        <a href="https://www.youtube.com/@rasoolvocalhq?si=mnkFHL6-013iM7xM" target="_blank" class="p-3 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center space-x-3 transition-all group">
+                            <div class="w-10 h-10 rounded-lg bg-red-600/20 text-red-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-youtube text-lg"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <h4 class="text-xs font-semibold text-white truncate">YouTube Channel</h4>
+                                <p class="text-[10px] text-gray-400 truncate">@rasoolvocalhq</p>
+                            </div>
+                        </a>
+
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/rasoolvocalhq?stkn=MXhxbDh2Y21ub29uZg==" target="_blank" class="p-3 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center space-x-3 transition-all group">
+                            <div class="w-10 h-10 rounded-lg bg-pink-600/20 text-pink-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-instagram text-lg"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <h4 class="text-xs font-semibold text-white truncate">Instagram HQ</h4>
+                                <p class="text-[10px] text-gray-400 truncate">Reels & Vocal clips</p>
+                            </div>
+                        </a>
+
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/share/18N26fnCo5" target="_blank" class="p-3 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center space-x-3 transition-all group">
+                            <div class="w-10 h-10 rounded-lg bg-blue-600/20 text-blue-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-facebook text-lg"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <h4 class="text-xs font-semibold text-white truncate">Facebook Page</h4>
+                                <p class="text-[10px] text-gray-400 truncate">Official community updates</p>
+                            </div>
+                        </a>
+
+                        <!-- X (Twitter) -->
+                        <a href="https://x.com/rasoolvocalhq" target="_blank" class="p-3 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center space-x-3 transition-all group">
+                            <div class="w-10 h-10 rounded-lg bg-gray-600/20 text-gray-300 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-x-twitter text-lg"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <h4 class="text-xs font-semibold text-white truncate">X (Twitter)</h4>
+                                <p class="text-[10px] text-gray-400 truncate">Announcements & updates</p>
+                            </div>
+                        </a>
+
+                        <!-- WhatsApp Channel -->
+                        <a href="https://whatsapp.com/channel/0029Vb8YdUD2ER6YnRUDrt21" target="_blank" class="p-3 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center space-x-3 transition-all group">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-600/20 text-emerald-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <h4 class="text-xs font-semibold text-white truncate">WhatsApp Channel</h4>
+                                <p class="text-[10px] text-gray-400 truncate">Direct broadcasts</p>
+                            </div>
+                        </a>
+
+                        <!-- Ishq Network Website -->
+                        <a href="https://ishqnetwork.github.io/ishq-network" target="_blank" class="p-3 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center space-x-3 transition-all group">
+                            <div class="w-10 h-10 rounded-lg bg-amber-600/20 text-amber-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-globe text-lg"></i>
+                            </div>
+                            <div class="overflow-hidden">
+                                <h4 class="text-xs font-semibold text-white truncate">Ishq Network Web</h4>
+                                <p class="text-[10px] text-gray-400 truncate">Main portal hub</p>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Community Interactive Feed in "All" Tab -->
+                <section class="bg-[#14141f] rounded-2xl p-6 border border-[#2a2a3a]">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-base font-semibold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-comments text-amber-400"></i> Live Community Feed & Posts
+                        </h3>
+                        <span class="text-xs bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-md border border-emerald-500/20">Active Live</span>
+                    </div>
+
+                    <!-- Admin Post Creator Box -->
+                    <div class="bg-[#0e0f12] p-4 rounded-xl border border-[#2a2a3a] mb-4">
+                        <label class="block text-xs font-medium text-gray-300 mb-2">Publish Announcement / Post (Admin / Fan)</label>
+                        <textarea id="postContentInput" rows="2" class="w-full bg-[#14141f] border border-[#2a2a3a] rounded-lg p-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-400 resize-none" placeholder="Share your thoughts or request a soulful Naat cover..."></textarea>
+                        <div class="flex items-center justify-between mt-3">
+                            <div class="flex items-center space-x-2 text-xs text-gray-400">
+                                <i class="fa-solid fa-shield-halved text-blue-400"></i> Ishq Network Verified Post
+                            </div>
+                            <button onclick="createNewPost()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-medium transition-all shadow-md">
+                                <i class="fa-solid fa-paper-plane mr-1"></i> Post to Feed
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Posts Container -->
+                    <div id="postsFeedContainer" class="space-y-3">
+                        <!-- Default Post 1 -->
+                        <div class="bg-[#0e0f12] p-4 rounded-xl border border-[#2a2a3a]">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-8 h-8 rounded-full bg-blue-600/30 flex items-center justify-center text-blue-400 font-bold text-xs">NI</div>
+                                    <div>
+                                        <div class="text-xs font-semibold text-white flex items-center gap-1">Noorilameen <i class="fa-solid fa-circle-check text-blue-400 text-[10px]"></i></div>
+                                        <div class="text-[10px] text-gray-400">2 hours ago &bull; Rasool Vocal HQ</div>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded border border-amber-500/20">Announcement</span>
+                            </div>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Alhamdulillah! New a cappella cover "Subarkkathil Enikkente Ente Vadhu" (Part 1) is receiving overwhelming love across Kerala and GCC. Stay tuned for Ramadan special soulful recitations! 🌙✨
+                            </p>
+                            <div class="flex items-center space-x-4 mt-3 pt-3 border-t border-gray-800/80 text-xs text-gray-400">
+                                <button onclick="likePost(this)" class="flex items-center space-x-1.5 hover:text-red-400 transition-colors">
+                                    <i class="fa-solid fa-heart text-red-500"></i> <span class="like-count">1.4k</span>
+                                </button>
+                                <button class="flex items-center space-x-1.5 hover:text-blue-400 transition-colors">
+                                    <i class="fa-solid fa-comment"></i> <span>84 Replies</span>
+                                </button>
+                                <button class="flex items-center space-x-1.5 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-share"></i> <span>Share</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Default Post 2 -->
+                        <div class="bg-[#0e0f12] p-4 rounded-xl border border-[#2a2a3a]">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-8 h-8 rounded-full bg-purple-600/30 flex items-center justify-center text-purple-400 font-bold text-xs">IN</div>
+                                    <div>
+                                        <div class="text-xs font-semibold text-white flex items-center gap-1">Ishq Network Official <i class="fa-solid fa-circle-check text-blue-400 text-[10px]"></i></div>
+                                        <div class="text-[10px] text-gray-400">Yesterday &bull; Thiruvananthapuram HQ</div>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded border border-blue-500/20">Update</span>
+                            </div>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Thank you for making Rasool Vocal HQ one of the fastest-growing pure-voice independent spiritual music hubs. All official links are verified above! ❤️
+                            </p>
+                            <div class="flex items-center space-x-4 mt-3 pt-3 border-t border-gray-800/80 text-xs text-gray-400">
+                                <button onclick="likePost(this)" class="flex items-center space-x-1.5 hover:text-red-400 transition-colors">
+                                    <i class="fa-solid fa-heart text-red-500"></i> <span class="like-count">952</span>
+                                </button>
+                                <button class="flex items-center space-x-1.5 hover:text-blue-400 transition-colors">
+                                    <i class="fa-solid fa-comment"></i> <span>42 Replies</span>
+                                </button>
+                                <button class="flex items-center space-x-1.5 hover:text-amber-400 transition-colors">
+                                    <i class="fa-solid fa-share"></i> <span>Share</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB CONTENT: LINKS -->
+            <div id="content-links" class="space-y-6 tab-content-pane hidden">
+                <div class="bg-[#14141f] rounded-2xl p-6 border border-[#2a2a3a]">
+                    <h2 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-link text-blue-400"></i> All Verified Official Links & Platforms
+                    </h2>
+                    <p class="text-xs text-gray-400 mb-6">Direct access to verified official channels of Rasool Vocal HQ & Ishq Network.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <a href="https://www.youtube.com/@rasoolvocalhq?si=mnkFHL6-013iM7xM" target="_blank" class="p-4 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center justify-between group transition-all">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center text-xl">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">YouTube Channel</h4>
+                                    <p class="text-xs text-gray-400">@rasoolvocalhq</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-blue-400 transition-colors"></i>
+                        </a>
+
+                        <a href="https://www.instagram.com/rasoolvocalhq?stkn=MXhxbDh2Y21ub29uZg==" target="_blank" class="p-4 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center justify-between group transition-all">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-xl bg-pink-600/20 text-pink-500 flex items-center justify-center text-xl">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Instagram Profile</h4>
+                                    <p class="text-xs text-gray-400">@rasoolvocalhq</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-blue-400 transition-colors"></i>
+                        </a>
+
+                        <a href="https://www.facebook.com/share/18N26fnCo5" target="_blank" class="p-4 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center justify-between group transition-all">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-500 flex items-center justify-center text-xl">
+                                    <i class="fa-brands fa-facebook"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Facebook Page</h4>
+                                    <p class="text-xs text-gray-400">Official Community</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-blue-400 transition-colors"></i>
+                        </a>
+
+                        <a href="https://x.com/rasoolvocalhq" target="_blank" class="p-4 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center justify-between group transition-all">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-xl bg-gray-600/20 text-gray-300 flex items-center justify-center text-xl">
+                                    <i class="fa-brands fa-x-twitter"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">X (Twitter) Feed</h4>
+                                    <p class="text-xs text-gray-400">@rasoolvocalhq</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-blue-400 transition-colors"></i>
+                        </a>
+
+                        <a href="https://whatsapp.com/channel/0029Vb8YdUD2ER6YnRUDrt21" target="_blank" class="p-4 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center justify-between group transition-all">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-xl bg-emerald-600/20 text-emerald-500 flex items-center justify-center text-xl">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">WhatsApp Broadcast</h4>
+                                    <p class="text-xs text-gray-400">Instant updates</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-blue-400 transition-colors"></i>
+                        </a>
+
+                        <a href="https://music.youtube.com/@rasoolvocalhq?si=-6T7wywel1WsT_BR" target="_blank" class="p-4 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center justify-between group transition-all">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-music"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">YouTube Music</h4>
+                                    <p class="text-xs text-gray-400">Audio streaming</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-blue-400 transition-colors"></i>
+                        </a>
+
+                        <a href="https://ishqnetwork.github.io/ishq-network" target="_blank" class="p-4 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center justify-between group transition-all">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-xl bg-amber-600/20 text-amber-500 flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-globe"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Ishq Network Portal</h4>
+                                    <p class="text-xs text-gray-400">Main website</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-blue-400 transition-colors"></i>
+                        </a>
+
+                        <a href="https://www.google.com/search?q=Rasool+Vocal+Hq" target="_blank" class="p-4 bg-[#0e0f12] hover:bg-[#1c1c2e] border border-[#2a2a3a] rounded-xl flex items-center justify-between group transition-all">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl">
+                                    <i class="fa-brands fa-google"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Google Knowledge Profile</h4>
+                                    <p class="text-xs text-gray-400">Search verification</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-blue-400 transition-colors"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB CONTENT: COMMUNITY -->
+            <div id="content-community" class="space-y-6 tab-content-pane hidden">
+                <div class="bg-[#14141f] rounded-2xl p-6 border border-[#2a2a3a]">
+                    <h2 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-users text-purple-400"></i> Ishq Network Community Hub
+                    </h2>
+                    <p class="text-xs text-gray-400 mb-6">Engage with fellow listeners, submit feedback, rate our vocal performances, and share devotion.</p>
+
+                    <!-- Feedback & 10-Star Rating Section -->
+                    <div class="bg-[#0e0f12] p-5 rounded-xl border border-[#2a2a3a] mb-6 space-y-4">
+                        <h3 class="text-sm font-semibold text-white">Rate Rasool Vocal HQ (1 to 10 Stars)</h3>
+                        <div class="flex items-center space-x-1 text-xl" id="starRatingContainer">
+                            <button onclick="setRating(1)" class="star-btn text-gray-600 hover:text-amber-400 transition-colors"><i class="fa-solid fa-star"></i></button>
+                            <button onclick="setRating(2)" class="star-btn text-gray-600 hover:text-amber-400 transition-colors"><i class="fa-solid fa-star"></i></button>
+                            <button onclick="setRating(3)" class="star-btn text-gray-600 hover:text-amber-400 transition-colors"><i class="fa-solid fa-star"></i></button>
+                            <button onclick="setRating(4)" class="star-btn text-gray-600 hover:text-amber-400 transition-colors"><i class="fa-solid fa-star"></i></button>
+                            <button onclick="setRating(5)" class="star-btn text-gray-600 hover:text-amber-400 transition-colors"><i class="fa-solid fa-star"></i></button>
+                            <button onclick="setRating(6)" class="star-btn text-gray-600 hover:text-amber-400 transition-colors"><i class="fa-solid fa-star"></i></button>
+                            <button onclick="setRating(7)" class="star-btn text-gray-600 hover:text-amber-400 transition-colors"><i class="fa-solid fa-star"></i></button>
+                            <button onclick="setRating(8)" class="star-btn text-gray-600 hover:text-amber-400 transition-colors"><i class="fa-solid fa-star"></i></button>
+                            <button onclick="setRating(9)" class="star-btn text-gray-600 hover:text-amber-400 transition-colors"><i class="fa-solid fa-star"></i></button>
+                            <button onclick="setRating(10)" class="star-btn text-gray-600 hover:text-amber-400 transition-colors"><i class="fa-solid fa-star"></i></button>
+                            <span class="text-xs text-amber-400 font-bold ml-3" id="ratingScoreText">10/10</span>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-gray-300 mb-2">Submit Your Review / Feedback</label>
+                            <textarea id="feedbackInput" rows="3" class="w-full bg-[#14141f] border border-[#2a2a3a] rounded-lg p-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-400 resize-none" placeholder="Write your soulful feedback or Naat requests here..."></textarea>
+                            <button onclick="submitFeedback()" class="mt-3 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:opacity-90 text-white rounded-lg text-xs font-medium transition-all shadow-md">
+                                Submit Feedback
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Community Messages Feed -->
+                    <div id="communityFeedList" class="space-y-3">
+                        <div class="bg-[#0e0f12] p-4 rounded-xl border border-[#2a2a3a]">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs font-semibold text-white">Muhammed Shafi (Kochi)</span>
+                                <span class="text-[10px] text-amber-400">10/10 ★★★★★★★★★★</span>
+                            </div>
+                            <p class="text-xs text-gray-300">"Subarkkathil Enikkente performance by Noorilameen is pure goosebumps. May Allah bless Ishq Network!"</p>
+                        </div>
+                        <div class="bg-[#0e0f12] p-4 rounded-xl border border-[#2a2a3a]">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs font-semibold text-white">Fathima Zahra (Dubai / TVM)</span>
+                                <span class="text-[10px] text-amber-400">10/10 ★★★★★★★★★★</span>
+                            </div>
+                            <p class="text-xs text-gray-300">"Absolute masterclass in unedited a cappella. Proud of our Thiruvananthapuram vocal talent!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB CONTENT: AI MODE -->
+            <div id="content-ai-mode" class="space-y-6 tab-content-pane hidden">
+                <div class="bg-[#14141f] rounded-2xl p-6 border border-[#2a2a3a]">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                            <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-bold text-white">Ishq AI Knowledge Assistant</h2>
+                            <p class="text-xs text-gray-400">Ask anything about Rasool Vocal HQ, Noorilameen, or Ishq Network.</p>
+                        </div>
+                    </div>
+
+                    <!-- AI Chat Box Interface -->
+                    <div class="bg-[#0e0f12] rounded-xl border border-[#2a2a3a] p-4 space-y-4">
+                        <div id="aiChatMessages" class="space-y-3 max-h-80 overflow-y-auto pr-2">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs flex-shrink-0">AI</div>
+                                <div class="bg-[#14141f] p-3 rounded-xl border border-[#2a2a3a] text-xs text-gray-300 leading-relaxed max-w-lg">
+                                    As-salamu alaykum! I am your Ishq Network AI assistant. How can I help you explore Rasool Vocal HQ today? Try asking about notable covers, location, or vocalist details!
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Prompt Input -->
+                        <div class="flex items-center space-x-2 pt-2 border-t border-gray-800">
+                            <input type="text" id="aiPromptInput" class="flex-grow bg-[#14141f] border border-[#2a2a3a] rounded-lg px-3 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-amber-400" placeholder="Ask AI about Rasool Vocal HQ...">
+                            <button onclick="sendAiPrompt()" class="px-4 py-2.5 bg-amber-500 hover:bg-amber-400 text-gray-950 font-semibold rounded-lg text-xs transition-all shadow-md">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column / Sidebar (Col 4 on Large Screens) -->
+        <div class="lg:col-span-4 space-y-6">
+
+            <!-- Profile Overview Card -->
+            <div class="bg-[#14141f] rounded-2xl p-6 border border-[#2a2a3a] text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-20 rainbow-glow opacity-30"></div>
+                
+                <div class="relative mt-4">
+                    <div class="w-20 h-20 mx-auto rounded-full rainbow-glow p-1 flex items-center justify-center shadow-xl">
+                        <div class="w-full h-full bg-[#14141f] rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-microphone-lines text-amber-400 text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-base font-bold text-white mt-3 flex items-center justify-center gap-1.5">
+                        Rasool Vocal HQ
+                        <i class="fa-solid fa-circle-check text-blue-400 text-xs"></i>
+                    </h3>
+                    <p class="text-xs text-gray-400">@rasoolvocalhq</p>
+                    <p class="text-[11px] text-gray-300 mt-2 px-2">
+                        Official independent vocal hub for pure a cappella, Naat, & nasheed owned by Ishq Network.
+                    </p>
+
+                    <!-- Sidebar Follow Button -->
+                    <div class="mt-5">
+                        <button id="sidebarFollowBtn" onclick="toggleFollow()" class="w-full py-2.5 rounded-xl font-medium text-xs transition-all shadow-md flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white">
+                            <i class="fa-solid fa-user-plus" id="sidebarFollowIcon"></i>
+                            <span id="sidebarFollowText">Follow Creator</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Knowledge Stats Card -->
+            <div class="bg-[#14141f] rounded-2xl p-6 border border-[#2a2a3a] space-y-4">
+                <h4 class="text-sm font-semibold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-info-circle text-blue-400"></i> Knowledge Panel Info
+                </h4>
+                <div class="space-y-3 text-xs">
+                    <div class="flex justify-between py-1.5 border-b border-gray-800">
+                        <span class="text-gray-400">Founder / Lead</span>
+                        <span class="text-white font-medium">Noorilameen</span>
+                    </div>
+                    <div class="flex justify-between py-1.5 border-b border-gray-800">
+                        <span class="text-gray-400">Parent Network</span>
+                        <span class="text-white font-medium">Ishq Network</span>
+                    </div>
+                    <div class="flex justify-between py-1.5 border-b border-gray-800">
+                        <span class="text-gray-400">Headquarters</span>
+                        <span class="text-white font-medium">Thiruvananthapuram, Kerala</span>
+                    </div>
+                    <div class="flex justify-between py-1.5 border-b border-gray-800">
+                        <span class="text-gray-400">Genre</span>
+                        <span class="text-white font-medium">A Cappella & Devotional</span>
+                    </div>
+                    <div class="flex justify-between py-1.5">
+                        <span class="text-gray-400">Status</span>
+                        <span class="text-emerald-400 font-medium">Active & Verified ✓</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trending Vocals List -->
+            <div class="bg-[#14141f] rounded-2xl p-6 border border-[#2a2a3a] space-y-4">
+                <h4 class="text-sm font-semibold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-fire text-amber-400"></i> Trending Performances
+                </h4>
+                <div class="space-y-3">
+                    <div class="p-3 bg-[#0e0f12] hover:bg-[#1c1c2e] rounded-xl border border-[#2a2a3a] transition-all cursor-pointer">
+                        <div class="text-xs font-semibold text-white truncate">Subarkkathil Enikkente Ente Vadhu (Part 1)</div>
+                        <div class="flex justify-between text-[10px] text-gray-400 mt-1">
+                            <span>12:34 min &bull; 2 days ago</span>
+                            <span class="text-blue-400">48k views</span>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-[#0e0f12] hover:bg-[#1c1c2e] rounded-xl border border-[#2a2a3a] transition-all cursor-pointer">
+                        <div class="text-xs font-semibold text-white truncate">Pirisham A Cappella Cover</div>
+                        <div class="flex justify-between text-[10px] text-gray-400 mt-1">
+                            <span>9:17 min &bull; 1 week ago</span>
+                            <span class="text-blue-400">32k views</span>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-[#0e0f12] hover:bg-[#1c1c2e] rounded-xl border border-[#2a2a3a] transition-all cursor-pointer">
+                        <div class="text-xs font-semibold text-white truncate">Vambutta Hamsa & Konjalle Penne</div>
+                        <div class="flex justify-between text-[10px] text-gray-400 mt-1">
+                            <span>12:96 min &bull; 2 weeks ago</span>
+                            <span class="text-blue-400">65k views</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="w-full border-t border-[#2a2a3a] bg-[#08090d] mt-12 py-8 px-4 text-center text-xs text-gray-500 space-y-3">
+        <div class="flex items-center justify-center space-x-2 text-white font-medium">
+            <span>Ishq Network - Rasool Vocal HQ</span>
+            <span>&bull;</span>
+            <span class="text-blue-400">Official Portal</span>
+        </div>
+        <p>Social media &bull; YouTube &bull; Instagram &bull; Facebook &bull; WhatsApp &bull; Verified Creator Network</p>
+        <p class="text-[10px] text-gray-600">&copy; 2026 Ishq Network. All rights reserved. Built with professional Google AI Overview architecture.</p>
+    </footer>
+
+    <!-- MODAL 1: Welcome Malayalam Modal (On Follow) -->
+    <div id="welcomeModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden animate-fade-in">
+        <div class="bg-[#14141f] border border-blue-500/40 rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl text-center space-y-4 relative">
+            <div class="w-16 h-16 mx-auto rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center text-2xl shadow-inner">
+                🎉
+            </div>
+            <h3 class="text-lg font-bold text-white">ഇഷ്‌ക് നെറ്റ്‌വർക്കിലേക്ക് സ്വാഗതം!</h3>
+            <p class="text-xs text-gray-300 leading-relaxed">
+                Thank you for following <strong>Rasool Vocal HQ</strong>! You are now part of a soulful community dedicated to peace, beautiful a cappella music, and Tawheed messages. ❤️✨
+            </p>
+            <button onclick="closeWelcomeModal()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold transition-all shadow-md">
+                Continue Exploring HQ
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL 2: Emotional Unfollow Retention Modal -->
+    <div id="unfollowModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden animate-fade-in">
+        <div class="bg-[#14141f] border border-red-500/40 rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl text-center space-y-4 relative">
+            <div class="w-16 h-16 mx-auto rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-2xl shadow-inner">
+                🥺
+            </div>
+            <h3 class="text-lg font-bold text-white">ഞങ്ങളെ വിട്ടുപോകുകയാണോ?</h3>
+            <p class="text-xs text-gray-300 leading-relaxed">
+                Are you sure you want to unfollow <strong>Rasool Vocal HQ</strong>? You will miss out on new Naat releases, live Q&A sessions, and Ramadan special recitations!
+            </p>
+            <div class="flex space-x-3 pt-2">
+                <button onclick="cancelUnfollow()" class="flex-1 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold transition-all shadow-md">
+                    Stay Connected
+                </button>
+                <button onclick="confirmUnfollowAction()" class="flex-1 py-2.5 bg-gray-800 hover:bg-gray-700 text-red-400 rounded-xl text-xs font-semibold transition-all border border-gray-700">
+                    Confirm Unfollow
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // State Management
+        let isFollowing = localStorage.getItem('ishq_following') === 'true';
+        let followerCount = 32420;
+        let currentRating = 10;
+        let isMalayalam = false;
+
+        // Initialize App on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            updateFollowUI();
+            loadSavedPosts();
+        });
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // Hide all tab panes
+            document.querySelectorAll('.tab-content-pane').forEach(pane => {
+                pane.classList.add('hidden');
+            });
+            // Remove active styles from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-[#14141f] text-gray-300 hover:bg-[#1c1c2e] border border-[#2a2a3a] flex items-center gap-2 whitespace-nowrap";
+            });
+
+            // Show selected tab pane
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            
+            // Highlight active button
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.className = "tab-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-blue-600/20 text-blue-400 border border-blue-500/30 flex items-center gap-2 whitespace-nowrap";
+        }
+
+        // Toggle Follow System with Modals
+        function toggleFollow() {
+            if (!isFollowing) {
+                // Trigger Follow & Welcome Modal
+                isFollowing = true;
+                localStorage.setItem('ishq_following', 'true');
+                followerCount++;
+                updateFollowUI();
+                document.getElementById('welcomeModal').classList.remove('hidden');
+            } else {
+                // Trigger Unfollow Warning Modal
+                document.getElementById('unfollowModal').classList.remove('hidden');
+            }
+        }
+
+        function closeWelcomeModal() {
+            document.getElementById('welcomeModal').classList.add('hidden');
+        }
+
+        function cancelUnfollow() {
+            document.getElementById('unfollowModal').classList.add('hidden');
+        }
+
+        function confirmUnfollowAction() {
+            isFollowing = false;
+            localStorage.setItem('ishq_following', 'false');
+            if (followerCount > 32000) followerCount--;
+            updateFollowUI();
+            document.getElementById('unfollowModal').classList.add('hidden');
+        }
+
+        function updateFollowUI() {
+            const followTexts = document.querySelectorAll('#headerFollowText, #sidebarFollowText');
+            const followIcons = document.querySelectorAll('#headerFollowIcon, #sidebarFollowIcon');
+            const followBtns = document.querySelectorAll('#headerFollowBtn, #sidebarFollowBtn');
+            const followerDisplay = document.getElementById('headerFollowCount');
+            const statFollowerDisplay = document.getElementById('statFollowers');
+
+            if (followerDisplay) followerDisplay.textContent = (followerCount / 1000).toFixed(1) + 'k';
+            if (statFollowerDisplay) statFollowerDisplay.textContent = (followerCount / 1000).toFixed(1) + 'K';
+
+            followBtns.forEach(btn => {
+                if (isFollowing) {
+                    btn.className = "px-5 py-2 rounded-full font-medium text-sm transition-all shadow-md flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white w-full sm:w-auto justify-center";
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Following ✓</span>';
+                } else {
+                    btn.className = "px-5 py-2 rounded-full font-medium text-sm transition-all shadow-md flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white w-full sm:w-auto justify-center";
+                    btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> <span>Follow</span>';
+                }
+            });
+        }
+
+        // Translation Toggle (English <-> Malayalam)
+        function toggleTranslation() {
+            isMalayalam = !isMalayalam;
+            const descEl = document.getElementById('aiDescriptionText');
+            const btnText = document.getElementById('translateText');
+
+            if (isMalayalam) {
+                descEl.innerHTML = `
+                    <p>
+                        <strong>രാസൂൽ വോക്കൽ എച്ച്ക്യു</strong> (<span class="text-blue-400">@rasoolvocalhq</span>) എന്നത് തിരുവനന്തപുരം, കേരളത്തിൽ നിന്നുള്ള പ്രശസ്ത ഗായകൻ നൂറുൽഅമീന്റെ നേതൃത്വത്തിലുള്ള, ഇഷ്‌ക് നെറ്റ്‌വർക്കിന്റെ ഔദ്യോഗിക സംഗീത പ്ലാറ്റ്‌ഫോമാണ്. ഇത് ആകാശപ്പല്ലാ, മാപ്പിളപ്പാട്ട്, ഇസ്ലാമിക ഭക്തിഗാനങ്ങൾ എന്നിവയ്ക്കായി സമർപ്പിച്ചിരിക്കുന്നു.
+                    </p>
+                `;
+                btnText.textContent = "Switch to English";
+            } else {
+                descEl.innerHTML = `
+                    <p>
+                        <strong>Rasool Vocal HQ</strong> (<span class="text-blue-400">@rasoolvocalhq</span>) is an official independent music platform and channel owned and produced by Ishq Network, fronted by renowned vocalist <span class="text-amber-300 font-medium">Noorilameen</span> from Thiruvananthapuram, Kerala, India. Dedicated to pure-voice, unedited a cappella performances, soulful Mappila pattu, and Islamic devotional tracks.
+                    </p>
+                `;
+                btnText.textContent = "മലയാളം (Malayalam)";
+            }
+        }
+
+        // Collapsible Show More
+        function toggleShowMore() {
+            const details = document.getElementById('collapsibleDetails');
+            const text = document.getElementById('showMoreText');
+            const icon = document.getElementById('showMoreIcon');
+
+            if (details.classList.contains('hidden')) {
+                details.classList.remove('hidden');
+                text.textContent = "Show Less Details";
+                icon.className = "fa-solid fa-chevron-up text-[10px]";
+            } else {
+                details.classList.add('hidden');
+                text.textContent = "Show More Details";
+                icon.className = "fa-solid fa-chevron-down text-[10px]";
+            }
+        }
+
+        // TTS Audio Speech Simulator
+        function playOverviewSpeech() {
+            const ttsIcon = document.getElementById('ttsIcon');
+            ttsIcon.className = "fa-solid fa-spinner fa-spin text-xs text-amber-400";
+            
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance("Rasool Vocal HQ is the official independent vocal platform owned and produced by Ishq Network, fronted by Noorilameen from Kerala.");
+                utterance.rate = 1.0;
+                utterance.onend = () => { ttsIcon.className = "fa-solid fa-volume-high text-xs"; };
+                window.speechSynthesis.speak(utterance);
+            } else {
+                setTimeout(() => {
+                    ttsIcon.className = "fa-solid fa-volume-high text-xs";
+                    alert("Audio playback simulated successfully.");
+                }, 1500);
+            }
+        }
+
+        // Admin Post Creator
+        function createNewPost() {
+            const input = document.getElementById('postContentInput');
+            const content = input.value.trim();
+            if (!content) {
+                alert("Please write something before posting.");
+                return;
+            }
+
+            const container = document.getElementById('postsFeedContainer');
+            const newPostHTML = `
+                <div class="bg-[#0e0f12] p-4 rounded-xl border border-[#2a2a3a] animate-fade-in">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-emerald-600/30 flex items-center justify-center text-emerald-400 font-bold text-xs">US</div>
+                            <div>
+                                <div class="text-xs font-semibold text-white flex items-center gap-1">Community Member <i class="fa-solid fa-circle-check text-blue-400 text-[10px]"></i></div>
+                                <div class="text-[10px] text-gray-400">Just now &bull; Rasool Vocal HQ Feed</div>
+                            </div>
+                        </div>
+                        <span class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded border border-blue-500/20">User Post</span>
+                    </div>
+                    <p class="text-xs text-gray-300 leading-relaxed">${escapeHtml(content)}</p>
+                    <div class="flex items-center space-x-4 mt-3 pt-3 border-t border-gray-800/80 text-xs text-gray-400">
+                        <button onclick="likePost(this)" class="flex items-center space-x-1.5 hover:text-red-400 transition-colors">
+                            <i class="fa-solid fa-heart text-red-500"></i> <span class="like-count">1</span>
+                        </button>
+                        <button class="flex items-center space-x-1.5 hover:text-blue-400 transition-colors">
+                            <i class="fa-solid fa-comment"></i> <span>0 Replies</span>
+                        </button>
+                        <button class="flex items-center space-x-1.5 hover:text-amber-400 transition-colors">
+                            <i class="fa-solid fa-share"></i> <span>Share</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('afterbegin', newPostHTML);
+            input.value = '';
+            savePostsToLocalStorage();
+        }
+
+        function likePost(btn) {
+            const span = btn.querySelector('.like-count');
+            let count = parseInt(span.textContent.replace('k', '000').replace('.', '')) || 1;
+            span.textContent = ++count;
+        }
+
+        // 10-Star Rating System
+        function setRating(score) {
+            currentRating = score;
+            document.getElementById('ratingScoreText').textContent = score + '/10';
+            const stars = document.querySelectorAll('#starRatingContainer .star-btn');
+            stars.forEach((star, index) => {
+                if (index < score) {
+                    star.className = "star-btn text-amber-400 transition-colors";
+                } else {
+                    star.className = "star-btn text-gray-600 transition-colors";
+                }
+            });
+        }
+
+        function submitFeedback() {
+            const feedback = document.getElementById('feedbackInput').value.trim();
+            if (!feedback) {
+                alert("Please enter feedback before submitting.");
+                return;
+            }
+            const list = document.getElementById('communityFeedList');
+            const item = `
+                <div class="bg-[#0e0f12] p-4 rounded-xl border border-[#2a2a3a]">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-xs font-semibold text-white">Verified Listener</span>
+                        <span class="text-[10px] text-amber-400">${currentRating}/10 ${'★'.repeat(Math.min(currentRating, 10))}</span>
+                    </div>
+                    <p class="text-xs text-gray-300">"${escapeHtml(feedback)}"</p>
+                </div>
+            `;
+            list.insertAdjacentHTML('afterbegin', item);
+            document.getElementById('feedbackInput').value = '';
+            alert("Thank you for your valuable feedback!");
+        }
+
+        // AI Assistant Chat Simulator
+        function sendAiPrompt() {
+            const input = document.getElementById('aiPromptInput');
+            const query = input.value.trim();
+            if (!query) return;
+
+            const chatMessages = document.getElementById('aiChatMessages');
+            
+            // User message
+            chatMessages.innerHTML += `
+                <div class="flex items-start space-x-3 justify-end">
+                    <div class="bg-blue-600 text-white p-3 rounded-xl text-xs max-w-lg">
+                        ${escapeHtml(query)}
+                    </div>
+                </div>
+            `;
+            input.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // AI Response simulation
+            setTimeout(() => {
+                let reply = "Rasool Vocal HQ is an official independent a cappella and Islamic devotional platform produced by Ishq Network, fronted by Noorilameen from Thiruvananthapuram.";
+                const qLower = query.toLowerCase();
+                if (qLower.includes('location') || qLower.includes('where')) {
+                    reply = "Rasool Vocal HQ is headquartered in Thiruvananthapuram, Kerala, India.";
+                } else if (qLower.includes('cover') || qLower.includes('song')) {
+                    reply = "Notable covers include 'Subarkkathil Enikkente Ente Vadhu' (Part 1), 'Pirisham', 'Vambutta Hamsa', and 'Konjalle Penne'.";
+                } else if (qLower.includes('network') || qLower.includes('owner')) {
+                    reply = "It is owned and produced by Ishq Network, featuring pure-voice unedited a cappella performances.";
+                }
+
+                chatMessages.innerHTML += `
+                    <div class="flex items-start space-x-3">
+                        <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs flex-shrink-0">AI</div>
+                        <div class="bg-[#14141f] p-3 rounded-xl border border-[#2a2a3a] text-xs text-gray-300 leading-relaxed max-w-lg">
+                            ${reply}
+                        </div>
+                    </div>
+                `;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 600);
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+        }
+
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        function savePostsToLocalStorage() {
+            const container = document.getElementById('postsFeedContainer');
+            localStorage.setItem('ishq_custom_posts', container.innerHTML);
+        }
+
+        function loadSavedPosts() {
+            const saved = localStorage.getItem('ishq_custom_posts');
+            if (saved) {
+                // Keep default or append if desired
+            }
+        }
+    </script>
+</body>
+</html>
+```
